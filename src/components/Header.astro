@@ -1,0 +1,23 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+const links = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Services' }, { href: '/about', label: 'About' }, { href: '/service-areas', label: 'Service Areas' }, { href: '/contact', label: 'Contact' }];
+---
+<header class="site-header">
+  <div class="shell header__inner">
+    <Brand />
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
+    </nav>
+    <a class="button button--small header__cta" href={`mailto:${site.email}`}><Icon name="mail" /> Email us</a>
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation"><Icon name="menu" /></summary>
+      <nav aria-label="Mobile navigation">
+        {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
+        <a class="button" href={`mailto:${site.email}`}><Icon name="mail" /> Email Pacific Spirit Electrical</a>
+      </nav>
+    </details>
+  </div>
+</header>

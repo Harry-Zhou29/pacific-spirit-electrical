@@ -1,0 +1,17 @@
+---
+interface Props { inverse?: boolean }
+const { inverse = false } = Astro.props;
+---
+<a class:list={["brand", { "brand--inverse": inverse }]} href="/" aria-label="Pacific Spirit Electrical home">
+  <img
+    class="brand__logo"
+    src="/images/pacificspiritelectrical_logo.png"
+    width="1254"
+    height="1254"
+    alt="Pacific Spirit Electrical"
+  />
+  <span class="brand__words" aria-hidden="true">
+    <strong>Pacific Spirit</strong>
+    <small>Electrical</small>
+  </span>
+</a>

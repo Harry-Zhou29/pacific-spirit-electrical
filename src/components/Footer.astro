@@ -1,0 +1,14 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="shell footer__grid">
+    <div><Brand inverse /><p>{site.tagline}</p></div>
+    <div><p class="eyebrow">Serving</p><p>{site.serviceArea}<br />{site.city}, {site.region}</p></div>
+    <div><p class="eyebrow">Get in touch</p><a class="footer-email" href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a></div>
+  </div>
+  <div class="shell footer__bottom"><p>© {new Date().getFullYear()} {site.name}</p><a href="/contact">Contact</a></div>
+</footer>
+<a class="mobile-contact" href={`mailto:${site.email}`}><Icon name="mail" /> Email us</a>
