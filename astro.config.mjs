@@ -5,5 +5,5 @@ export default defineConfig({
   site: 'https://pacificspiritelectrical.ca',
   output: 'static',
   integrations: [sitemap()],
-  trailingSlash: 'never',
+  trailingSlash: 'always',
 });
