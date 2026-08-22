@@ -4,17 +4,18 @@ const path = Astro.url.pathname;
 const links = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Services' }, { href: '/about', label: 'About' }, { href: '/service-areas', label: 'Service Areas' }, { href: '/contact', label: 'Contact' }];
 ---
 <header class="site-header">
+  <div class="header-trust"><div class="shell header-trust__inner"><span>Serving Greater Vancouver</span><span aria-hidden="true">•</span><span>Quality work, done right</span></div></div>
   <div class="shell header__inner">
     <Brand />
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
     </nav>
-    <a class="button button--small header__quote" href="/contact">Get a Quote</a>
+    <a class="button button--small header__quote" href="/contact/">Get a Quote <span aria-hidden="true">→</span></a>
     <details class="mobile-menu">
       <summary aria-label="Toggle navigation"><span></span><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
         {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
-        <a class="button" href="/contact">Get a Quote</a>
+        <a class="button" href="/contact/">Get a Quote</a>
       </nav>
     </details>
   </div>

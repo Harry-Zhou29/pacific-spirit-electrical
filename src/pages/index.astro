@@ -3,10 +3,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { services, site } from '../data/site';
 const title = 'Residential Electrician in Vancouver | Pacific Spirit Electrical';
-const description = 'Pacific Spirit Electrical provides professional residential electrical services, panel upgrades, EV charger installation, lighting, heat pump and renovation electrical work across Vancouver and Greater Vancouver.';
+const description = 'Red Seal electrician offering residential & commercial electrical services across Greater Vancouver — panel upgrades, EV chargers, lighting, renovations & more. Free estimates.';
 ---
 <BaseLayout {title} {description} path="/">
-  <section class="hero"><div class="shell hero__inner"><div class="hero__grid"><div><p class="eyebrow">Pacific Spirit Electrical · Vancouver, BC</p><h1>Professional Electrical Services in Greater Vancouver</h1><p class="lead">Reliable residential electrical services for homeowners in Vancouver and Greater Vancouver—from troubleshooting and repairs to upgrades, lighting, EV chargers, and renovation work.</p><div class="hero__actions"><a class="button" href={`mailto:${site.email}?subject=Free%20Quote%20Request`}><Icon name="mail" /> Get a Free Quote</a><a class="button button--outline" href="/contact/">Contact Us <Icon name="arrow" /></a></div></div><div class="hero__art" aria-hidden="true"><span></span><i></i><b></b></div></div></div></section>
+  <section class="hero">
+    <div class="hero__visual" aria-hidden="true"></div>
+    <div class="shell hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Trusted electrical services in Vancouver</p>
+        <h1>Safe. Reliable.<br />Powering Your Home<span aria-hidden="true">.</span></h1>
+        <p class="lead">From panel upgrades to EV chargers and everything in between, quality electrical work you can count on.</p>
+        <div class="hero__actions">
+          <a class="button hero__primary" href={`mailto:${site.email}?subject=Free%20Quote%20Request`}><Icon name="bolt" /> Get a Free Quote</a>
+          <a class="button button--outline" href="/services/">View Services <Icon name="arrow" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="trust-strip" aria-label="Why choose Pacific Spirit Electrical">
+    <div class="shell trust-strip__inner">
+      <article><span class="trust-strip__icon"><Icon name="bolt" /></span><div><strong>Red Seal Expertise</strong><small>{site.qualification}</small></div></article>
+      <article><span class="trust-strip__icon"><Icon name="home" /></span><div><strong>Residential &amp; Commercial</strong><small>Practical electrical solutions</small></div></article>
+      <article><span class="trust-strip__icon"><Icon name="arrow" /></span><div><strong>Reliable Service</strong><small>Quality work, done right</small></div></article>
+      <article><span class="trust-strip__icon"><Icon name="map" /></span><div><strong>Greater Vancouver</strong><small>Local electrical service</small></div></article>
+    </div>
+  </section>
   <section class="section section--white"><div class="shell"><div class="section__head"><div><p class="eyebrow">What we do</p><h2>Useful electrical expertise, close to home.</h2></div><p>Whether you are resolving an issue, making space for new technology, or renovating a room, the work starts with understanding what your home needs.</p></div><div class="grid service-grid">{services.slice(0,4).map((service) => <article class="service-card"><span class="service-card__icon"><Icon name="bolt" /></span><div><h3>{service.title}</h3><p>{service.description}</p></div><a href="/services/">Learn more <Icon name="arrow" /></a></article>)}</div><p style="margin-top:1.5rem"><a class="button button--outline" href="/services/">View all residential services <Icon name="arrow" /></a></p></div></section>
   <section class="section section--navy"><div class="shell"><p class="eyebrow">Why choose Pacific Spirit Electrical</p><h2>A calm, professional approach to electrical work.</h2><div class="grid reason-grid"><article class="reason"><h3>Homeowner-focused</h3><p>Residential electrical work explained in plain language, with your home and priorities kept front of mind.</p></article><article class="reason"><h3>Clear next steps</h3><p>From the first conversation, the aim is to make it easier to understand what needs attention and why.</p></article><article class="reason"><h3>Local perspective</h3><p>Focused on Vancouver and Greater Vancouver homes, from established neighbourhoods to evolving spaces.</p></article></div></div></section>
   <section class="section"><div class="shell"><div class="section__head"><div><p class="eyebrow">Residential electrical services</p><h2>Work that supports the way your home is changing.</h2></div><a class="button button--outline" href="/services/">All services <Icon name="arrow" /></a></div><div class="grid service-grid">{services.slice(4).map((service) => <article class="service-card"><span class="service-card__icon"><Icon name="bolt" /></span><div><h3>{service.title}</h3><p>{service.description}</p></div><a href="/services/">Learn more <Icon name="arrow" /></a></article>)}</div></div></section>

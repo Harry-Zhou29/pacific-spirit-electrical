@@ -2,11 +2,17 @@ export const site = {
   name: 'Pacific Spirit Electrical',
   domain: 'https://pacificspiritelectrical.ca',
   email: 'harry@pacificspiritelectrical.ca',
+  phone: '778-879-8210',
+  telephone: '+17788798210',
   tagline: 'Reliable. Safe. Professional.',
   city: 'Vancouver',
   region: 'British Columbia',
   country: 'Canada',
-  serviceArea: 'Vancouver and Greater Vancouver',
+  serviceArea: 'Greater Vancouver, BC',
+  qualification: 'Red Seal Electrician',
+  businessType: 'Residential & Commercial',
+  emergencyService: true,
+  freeEstimates: true,
 } as const;
 
 export const services = [

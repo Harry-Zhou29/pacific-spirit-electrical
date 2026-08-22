@@ -3,7 +3,7 @@ import { site } from '../data/site';
 interface Props { title: string; description: string; path?: string }
 const { title, description, path = '/' } = Astro.props;
 const canonical = new URL(path, site.domain).toString();
-const schema = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, url: site.domain, email: site.email, description: site.tagline, address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'CA' }, areaServed: [{ '@type': 'City', name: 'Vancouver' }, { '@type': 'AdministrativeArea', name: 'Greater Vancouver' }] };
+const schema = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, url: site.domain, email: site.email, telephone: site.telephone, description: site.tagline, address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'CA' }, areaServed: [{ '@type': 'City', name: 'Vancouver' }, { '@type': 'AdministrativeArea', name: 'Greater Vancouver' }], hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'Red Seal', name: site.qualification } };
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
