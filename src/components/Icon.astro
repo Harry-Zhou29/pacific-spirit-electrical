@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'bolt' | 'home' | 'map' | 'mail' | 'menu' | 'close' | 'phone' | 'panel' | 'plug' | 'heat-pump' | 'rewire' | 'bulb' | 'troubleshoot' | 'clipboard-check' | 'older-home' | 'shield-check' | 'message' | 'home-check' }
+interface Props { name: 'arrow' | 'bolt' | 'home' | 'map' | 'mail' | 'menu' | 'close' | 'phone' | 'panel' | 'plug' | 'heat-pump' | 'rewire' | 'bulb' | 'troubleshoot' | 'clipboard-check' | 'older-home' | 'shield-check' | 'message' | 'home-check' | 'location' }
 const { name } = Astro.props;
 const paths = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
@@ -21,6 +21,7 @@ const paths = {
   'shield-check': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
   message: '<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8m-8 4h5"/>',
   'home-check': '<path d="m3 11 9-8 9 8v10H5V11m3 10v-6h5"/><path d="m13 17 2 2 4-5"/>',
+  location: '<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
 };
 ---
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" set:html={paths[name]} />
