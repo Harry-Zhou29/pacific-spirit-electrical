@@ -51,11 +51,12 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
         <div class="contact-form__fields">
           <div class="contact-form__row">
             <label class="field">Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required /></label>
-            <label class="field">Location <span aria-hidden="true">*</span><input name="location" autocomplete="address-level2" placeholder="City or neighbourhood" required /></label>
+            <label class="field">Location <span aria-hidden="true">*</span><select name="location_choice" autocomplete="address-level2" required><option value="">Select your location</option><option>Vancouver</option><option>Burnaby</option><option>Richmond</option><option>North Vancouver</option><option>West Vancouver</option><option>New Westminster</option><option>Other Lower Mainland Area</option><option>Not Sure</option></select></label>
           </div>
+          <label class="field contact-form__other-location" hidden>City or community <span aria-hidden="true">*</span><input name="other_location" autocomplete="address-level2" /></label>
           <div class="contact-form__row">
             <label class="field">Email<input name="email" type="email" autocomplete="email" /></label>
-            <label class="field">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label class="field">Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="phone-error" /><span class="field-error" id="phone-error" aria-live="polite"></span></label>
           </div>
           <p class="form-note">Please provide at least one of email or phone.</p>
           <label class="field">Service interest<select name="service"><option value="">Select a service</option>{services.map((service) => <option value={service.title}>{service.title}</option>)}<option value="Other electrical work">Other electrical work</option></select></label>
@@ -94,10 +95,80 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   const success = form?.querySelector<HTMLElement>('.contact-success');
   const submitAnother = form?.querySelector<HTMLButtonElement>('.contact-success__again');
   const firstField = form?.querySelector<HTMLInputElement>('input[name="name"]');
+  const locationChoice = form?.querySelector<HTMLSelectElement>('select[name="location_choice"]');
+  const otherLocationField = form?.querySelector<HTMLElement>('.contact-form__other-location');
+  const otherLocationInput = form?.querySelector<HTMLInputElement>('input[name="other_location"]');
+  const phoneInput = form?.querySelector<HTMLInputElement>('input[name="phone"]');
+  const phoneError = form?.querySelector<HTMLElement>('#phone-error');
+
+  const phoneErrorMessage = 'Enter a valid 10-digit phone number, for example (778) 879-8210.';
+
+  const clearPhoneError = () => {
+    if (!phoneInput || !phoneError) return;
+    phoneInput.removeAttribute('aria-invalid');
+    phoneInput.setCustomValidity('');
+    phoneError.textContent = '';
+  };
+
+  const normalizePhone = () => {
+    if (!phoneInput || !phoneError) return null;
+    const rawPhone = phoneInput.value.trim();
+    clearPhoneError();
+    if (!rawPhone) return '';
+
+    let digits = rawPhone.replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('1')) digits = digits.slice(1);
+    const usesAcceptedCharacters = /^\+?[\d\s().-]+$/.test(rawPhone);
+    const usesValidCountryCode = !rawPhone.startsWith('+') || /^\+1(?:[\s().-]|\d)/.test(rawPhone);
+    const isPlausible = usesAcceptedCharacters && usesValidCountryCode && /^[2-9]\d{2}[2-9]\d{6}$/.test(digits);
+
+    if (!isPlausible) {
+      phoneInput.setAttribute('aria-invalid', 'true');
+      phoneInput.setCustomValidity(phoneErrorMessage);
+      phoneError.textContent = phoneErrorMessage;
+      return null;
+    }
+
+    const formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    phoneInput.value = formatted;
+    return formatted;
+  };
+
+  const syncOtherLocation = () => {
+    if (!locationChoice || !otherLocationField || !otherLocationInput) return;
+    const needsDetails = locationChoice.value === 'Other Lower Mainland Area';
+    otherLocationField.hidden = !needsDetails;
+    otherLocationInput.required = needsDetails;
+    if (!needsDetails) otherLocationInput.value = '';
+  };
+
+  const resetFieldState = () => {
+    clearPhoneError();
+    syncOtherLocation();
+    status && (status.textContent = '');
+  };
+
+  locationChoice?.addEventListener('change', syncOtherLocation);
+  phoneInput?.addEventListener('blur', () => {
+    if (phoneInput.value.trim()) normalizePhone();
+  });
+  phoneInput?.addEventListener('input', () => {
+    const rawPhone = phoneInput.value.trim();
+    if (!rawPhone) {
+      clearPhoneError();
+      return;
+    }
+    let digits = rawPhone.replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('1')) digits = digits.slice(1);
+    const usesAcceptedCharacters = /^\+?[\d\s().-]+$/.test(rawPhone);
+    const usesValidCountryCode = !rawPhone.startsWith('+') || /^\+1(?:[\s().-]|\d)/.test(rawPhone);
+    if (usesAcceptedCharacters && usesValidCountryCode && /^[2-9]\d{2}[2-9]\d{6}$/.test(digits)) clearPhoneError();
+  });
 
   const showSuccess = () => {
     if (!form || !fields || !success) return;
     form.reset();
+    resetFieldState();
     fields.hidden = true;
     success.hidden = false;
     success.focus();
@@ -108,6 +179,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
     if (!fields || !success) return;
     success.hidden = true;
     fields.hidden = false;
+    resetFieldState();
     firstField?.focus();
   });
 
@@ -115,9 +187,17 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
     event.preventDefault();
     if (!status || !submitButton) return;
 
+    const phone = normalizePhone();
+    if (phone === null) {
+      phoneInput?.focus();
+      return;
+    }
+
     const data = new FormData(form);
     const email = String(data.get('email') || '').trim();
-    const phone = String(data.get('phone') || '').trim();
+    const location = locationChoice?.value === 'Other Lower Mainland Area'
+      ? String(data.get('other_location') || '').trim()
+      : String(data.get('location_choice') || '').trim();
     const honeypot = String(data.get('company_website') || '').trim();
 
     status.textContent = '';
@@ -143,7 +223,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
           name: String(data.get('name') || '').trim(),
           email,
           phone,
-          location: String(data.get('location') || '').trim(),
+          location,
           service: String(data.get('service') || ''),
           preferred_contact: String(data.get('preferred_contact') || ''),
           message: String(data.get('message') || '').trim(),
