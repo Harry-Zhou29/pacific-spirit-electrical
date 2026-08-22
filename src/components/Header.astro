@@ -1,7 +1,7 @@
 ---
 import Brand from './Brand.astro';
-const path = Astro.url.pathname;
-const links = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Services' }, { href: '/about', label: 'About' }, { href: '/service-areas', label: 'Service Areas' }, { href: '/contact', label: 'Contact' }];
+const path = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.replace(/\/+$/, '')}/`;
+const links = [{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { href: '/about/', label: 'About' }, { href: '/service-areas/', label: 'Service Areas' }, { href: '/contact/', label: 'Contact' }];
 ---
 <header class="site-header">
   <div class="header-trust"><div class="shell header-trust__inner"><span>Serving Greater Vancouver</span><span aria-hidden="true">•</span><span>Quality work, done right</span></div></div>
