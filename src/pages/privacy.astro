@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const title = 'Privacy Policy | Pacific Spirit Electrical';
+const description = 'Learn how Pacific Spirit Electrical collects, uses, and protects information submitted through its website and quote request form.';
+---
+
+<BaseLayout {title} {description} path="/privacy/">
+  <section class="page-hero privacy-hero">
+    <div class="shell">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy Policy</h1>
+      <p>Effective date: August 22, 2026</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell copy privacy-content">
+      <h2>Information We Collect</h2>
+      <p>Pacific Spirit Electrical may collect information that you voluntarily provide through the website, including your name, email address, phone number, project location, preferred contact method, requested service, and project description.</p>
+
+      <h2>How We Use Your Information</h2>
+      <p>Information submitted through the website is used to review your inquiry, respond to your request, prepare or discuss an estimate, communicate about electrical services, and maintain business records related to the inquiry.</p>
+
+      <h2>Service Providers</h2>
+      <p>Website inquiries may be processed using trusted service providers that support form automation, email delivery, and business record management. These currently include n8n and Google Workspace services such as email and Google Sheets. These providers process information only as needed to support the inquiry workflow.</p>
+
+      <h2>Information Sharing</h2>
+      <p>Pacific Spirit Electrical does not sell personal information. Information may be disclosed when reasonably necessary to process an inquiry, provide requested services, comply with legal requirements, or protect the security of the business and its customers.</p>
+
+      <h2>Retention and Safeguards</h2>
+      <p>Personal information is retained only for as long as reasonably necessary for the purposes for which it was collected and for applicable business or legal record-keeping requirements. Reasonable safeguards are used to protect submitted information against unauthorized access, use, or disclosure.</p>
+
+      <h2>Your Choices</h2>
+      <p>You may contact Pacific Spirit Electrical to ask about, correct, or request deletion of personal information associated with your inquiry, subject to applicable legal and business record requirements.</p>
+
+      <h2>Contact</h2>
+      <p>For privacy questions or requests, contact:<br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
+</BaseLayout>

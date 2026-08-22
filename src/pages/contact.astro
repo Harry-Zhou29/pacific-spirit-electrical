@@ -68,6 +68,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
           <label class="field">Project description <span aria-hidden="true">*</span><textarea name="message" required placeholder="Please share a brief description of your project."></textarea></label>
           <div class="contact-honeypot" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
           <button class="button form-button" type="submit">Request a Free Quote</button>
+          <p class="form-consent">By submitting this form, you consent to Pacific Spirit Electrical using the information provided to respond to your inquiry. See our <a href="/privacy/">Privacy Policy</a>.</p>
           <p class="contact-form__status" role="status" aria-live="polite"></p>
         </div>
         <div class="contact-success" role="status" aria-live="polite" tabindex="-1" hidden>
@@ -94,6 +95,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   const success = form?.querySelector<HTMLElement>('.contact-success');
   const submitAnother = form?.querySelector<HTMLButtonElement>('.contact-success__again');
   const firstField = form?.querySelector<HTMLInputElement>('input[name="name"]');
+  const serviceSelect = form?.querySelector<HTMLSelectElement>('select[name="service"]');
   const locationChoice = form?.querySelector<HTMLSelectElement>('select[name="location_choice"]');
   const otherLocationField = form?.querySelector<HTMLElement>('.contact-form__other-location');
   const otherLocationInput = form?.querySelector<HTMLInputElement>('input[name="other_location"]');
@@ -101,6 +103,11 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   const phoneError = form?.querySelector<HTMLElement>('#phone-error');
 
   const phoneErrorMessage = 'Enter a valid 10-digit phone number, for example (778) 879-8210.';
+
+  const requestedService = new URLSearchParams(window.location.search).get('service');
+  if (serviceSelect && requestedService && Array.from(serviceSelect.options).some((option) => option.value === requestedService)) {
+    serviceSelect.value = requestedService;
+  }
 
   const clearPhoneError = () => {
     if (!phoneInput || !phoneError) return;

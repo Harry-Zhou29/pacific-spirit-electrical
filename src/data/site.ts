@@ -8,10 +8,9 @@ export const site = {
   city: 'Vancouver',
   region: 'British Columbia',
   country: 'Canada',
-  serviceArea: 'Greater Vancouver, BC',
+  serviceArea: 'Vancouver & the Lower Mainland, BC',
   qualification: 'Red Seal Electrician',
-  businessType: 'Residential & Commercial',
-  emergencyService: true,
+  businessType: 'Residential & Light Commercial',
   freeEstimates: true,
 } as const;
 
