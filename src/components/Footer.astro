@@ -1,14 +1,13 @@
 ---
-import Brand from './Brand.astro';
 import Icon from './Icon.astro';
 import { site } from '../data/site';
 ---
 <footer class="site-footer">
   <div class="shell footer__grid">
-    <div><Brand inverse /><p>{site.tagline}</p><p class="footer-creds">{site.qualification} · {site.businessType}</p></div>
-    <div><p class="eyebrow">Serving</p><p>{site.serviceArea}<br />{site.city}, {site.region}</p></div>
-    <div><p class="eyebrow">Get in touch</p><a class="footer-phone" href={`tel:${site.telephone}`}><Icon name="phone" />{site.phone}</a><a class="footer-email" href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a></div>
+    <div><a class="footer__brand" href="/" aria-label="Pacific Spirit Electrical home"><img src="/images/pacific-spirit-electrical-logo.png" width="2172" height="724" alt="Pacific Spirit Electrical" loading="lazy" decoding="async" /></a><p>{site.tagline}</p><p class="footer-creds">{site.qualification} · {site.businessType}</p><p class="footer-location">Vancouver &amp; the Lower Mainland, BC</p></div>
+    <nav aria-label="Footer navigation"><p class="eyebrow">Quick Links</p><ul class="footer-links"><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/about/">About</a></li><li><a href="/service-areas/">Service Areas</a></li><li><a href="/contact/">Contact</a></li></ul></nav>
+    <div><p class="eyebrow">Get in touch</p><a class="footer-phone" href={`tel:${site.telephone}`}><Icon name="phone" />{site.phone}</a><a class="footer-email" href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a><a class="footer-whatsapp" href="https://wa.me/17788798210" target="_blank" rel="noopener noreferrer">WhatsApp <Icon name="arrow" /></a></div>
   </div>
-  <div class="shell footer__bottom"><p>© {new Date().getFullYear()} {site.name}</p><a href="/contact">Contact</a></div>
+  <div class="shell footer__bottom"><p>© {new Date().getFullYear()} {site.name}</p><a href="/contact/">Contact</a></div>
 </footer>
 <a class="mobile-contact" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a>
