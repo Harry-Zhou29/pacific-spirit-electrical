@@ -67,6 +67,10 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
           </fieldset>
           <label class="field">Project description <span aria-hidden="true">*</span><textarea name="message" required placeholder="Please share a brief description of your project."></textarea></label>
           <div class="contact-honeypot" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
+          <div class="turnstile-field">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEYv46dUc4QOmQXS" data-action="contact_submit" data-theme="light" data-size="flexible" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
+            <p class="turnstile-status" id="turnstile-status" role="status" aria-live="polite"></p>
+          </div>
           <button class="button form-button" type="submit">Request a Free Quote</button>
           <p class="form-consent">By submitting this form, you consent to Pacific Spirit Electrical using the information provided to respond to your inquiry. See our <a href="/privacy/">Privacy Policy</a>.</p>
           <p class="contact-form__status" role="status" aria-live="polite"></p>
@@ -87,7 +91,17 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   </section>
 </BaseLayout>
 
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
+  interface TurnstileWindow extends Window {
+    turnstile?: { reset: () => void };
+    onTurnstileSuccess?: () => void;
+    onTurnstileExpired?: () => void;
+    onTurnstileError?: () => void;
+  }
+
+  const turnstileWindow = window as TurnstileWindow;
   const form = document.querySelector<HTMLFormElement>('.contact-form');
   const status = form?.querySelector<HTMLElement>('.contact-form__status');
   const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
@@ -101,8 +115,28 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   const otherLocationInput = form?.querySelector<HTMLInputElement>('input[name="other_location"]');
   const phoneInput = form?.querySelector<HTMLInputElement>('input[name="phone"]');
   const phoneError = form?.querySelector<HTMLElement>('#phone-error');
+  const turnstileWidget = form?.querySelector<HTMLElement>('.cf-turnstile');
+  const turnstileStatus = form?.querySelector<HTMLElement>('#turnstile-status');
 
   const phoneErrorMessage = 'Enter a valid 10-digit phone number, for example (778) 879-8210.';
+
+  const clearTurnstileStatus = () => {
+    if (turnstileStatus) turnstileStatus.textContent = '';
+  };
+
+  const resetTurnstile = () => {
+    turnstileWindow.turnstile?.reset();
+  };
+
+  turnstileWindow.onTurnstileSuccess = clearTurnstileStatus;
+  turnstileWindow.onTurnstileExpired = () => {
+    if (turnstileStatus) turnstileStatus.textContent = 'Verification expired. Please complete the verification again.';
+    resetTurnstile();
+  };
+  turnstileWindow.onTurnstileError = () => {
+    if (turnstileStatus) turnstileStatus.textContent = 'Verification could not be completed. Please try again.';
+    resetTurnstile();
+  };
 
   const requestedService = new URLSearchParams(window.location.search).get('service');
   if (serviceSelect && requestedService && Array.from(serviceSelect.options).some((option) => option.value === requestedService)) {
@@ -150,6 +184,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
 
   const resetFieldState = () => {
     clearPhoneError();
+    clearTurnstileStatus();
     syncOtherLocation();
     status && (status.textContent = '');
   };
@@ -186,6 +221,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
     success.hidden = true;
     fields.hidden = false;
     resetFieldState();
+    resetTurnstile();
     firstField?.focus();
   });
 
@@ -218,6 +254,13 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
       return;
     }
 
+    const turnstileToken = String(data.get('cf-turnstile-response') || '').trim();
+    if (!turnstileToken) {
+      if (turnstileStatus) turnstileStatus.textContent = 'Please complete the verification before submitting.';
+      turnstileWidget?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     submitButton.disabled = true;
     submitButton.textContent = 'Sending…';
 
@@ -234,6 +277,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
           preferred_contact: String(data.get('preferred_contact') || ''),
           message: String(data.get('message') || '').trim(),
           source: 'Pacific Spirit Electrical Website',
+          turnstileToken,
         }),
       });
 
@@ -241,6 +285,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
       showSuccess();
     } catch {
       status.textContent = 'We couldn’t send your request. Please call, email, or message us on WhatsApp.';
+      resetTurnstile();
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = 'Request a Free Quote';

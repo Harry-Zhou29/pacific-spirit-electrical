@@ -304,6 +304,9 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .contact-method legend { width: 100%; margin-bottom: .45rem; font-size: .92rem; font-weight: 760; }
 .contact-method label { display: flex; align-items: center; gap: .4rem; font-size: .9rem; font-weight: 650; }
 .contact-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.turnstile-field, .cf-turnstile { width: 100%; min-width: 0; }
+.turnstile-status { min-height: 0; margin: .45rem 0 0; color: #8d3024; font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.turnstile-status:empty { display: none; }
 .form-note { color: #50665c; font-size: .88rem; }
 .form-button { justify-self: start; border: 0; cursor: pointer; }
 .form-button:disabled { cursor: wait; opacity: .65; }
