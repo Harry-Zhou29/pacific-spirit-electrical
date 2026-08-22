@@ -1,10 +1,24 @@
 ---
 import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
 const path = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.replace(/\/+$/, '')}/`;
 const links = [{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { href: '/about/', label: 'About' }, { href: '/service-areas/', label: 'Service Areas' }, { href: '/contact/', label: 'Contact' }];
 ---
 <header class="site-header">
-  <div class="header-trust"><div class="shell header-trust__inner"><span>Serving Greater Vancouver</span><span aria-hidden="true">•</span><span>Quality work, done right</span></div></div>
+  <div class="header-trust">
+    <div class="shell header-trust__inner">
+      <div class="header-trust__claims">
+        <Icon name="bolt" /><strong>Red Seal Electrician</strong>
+        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">Serving Greater Vancouver</span>
+        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">Quality work, done right</span>
+      </div>
+      <div class="header-trust__contacts">
+        <a href={`tel:${site.telephone}`}><Icon name="phone" /><span class="header-trust__phone">{site.phone}</span><span class="header-trust__call">Call</span></a>
+        <a href="https://wa.me/17788798210" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </div>
   <div class="shell header__inner">
     <Brand />
     <nav class="desktop-nav" aria-label="Primary navigation">
