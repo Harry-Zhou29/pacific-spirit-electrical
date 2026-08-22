@@ -1,7 +1,5 @@
 ---
 import Brand from './Brand.astro';
-import Icon from './Icon.astro';
-import { site } from '../data/site';
 const path = Astro.url.pathname;
 const links = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Services' }, { href: '/about', label: 'About' }, { href: '/service-areas', label: 'Service Areas' }, { href: '/contact', label: 'Contact' }];
 ---
@@ -11,12 +9,12 @@ const links = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Servic
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
     </nav>
-    <a class="button button--small header__cta" href={`mailto:${site.email}`}><Icon name="mail" /> Email us</a>
+    <a class="button button--small header__quote" href="/contact">Get a Quote</a>
     <details class="mobile-menu">
-      <summary aria-label="Open navigation"><Icon name="menu" /></summary>
+      <summary aria-label="Toggle navigation"><span></span><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
         {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
-        <a class="button" href={`mailto:${site.email}`}><Icon name="mail" /> Email Pacific Spirit Electrical</a>
+        <a class="button" href="/contact">Get a Quote</a>
       </nav>
     </details>
   </div>
