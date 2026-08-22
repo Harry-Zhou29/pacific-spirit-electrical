@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'bolt' | 'home' | 'map' | 'mail' | 'menu' | 'close' | 'phone' | 'panel' | 'plug' | 'heat-pump' | 'rewire' | 'bulb' | 'troubleshoot' | 'clipboard-check' | 'older-home' }
+interface Props { name: 'arrow' | 'bolt' | 'home' | 'map' | 'mail' | 'menu' | 'close' | 'phone' | 'panel' | 'plug' | 'heat-pump' | 'rewire' | 'bulb' | 'troubleshoot' | 'clipboard-check' | 'older-home' | 'shield-check' | 'message' | 'home-check' }
 const { name } = Astro.props;
 const paths = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
@@ -18,6 +18,9 @@ const paths = {
   troubleshoot: '<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M11 5 7 11h4l-1 4 4-7h-3z"/>',
   'clipboard-check': '<path d="M9 5H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 3h6v4H9z"/><path d="m8 14 3 3 5-6"/>',
   'older-home': '<path d="m3 11 9-8 9 8v10H5V11m3 10v-6h5"/><circle cx="17" cy="17" r="4"/><path d="M17 15v2l1.5 1"/>',
+  'shield-check': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
+  message: '<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8m-8 4h5"/>',
+  'home-check': '<path d="m3 11 9-8 9 8v10H5V11m3 10v-6h5"/><path d="m13 17 2 2 4-5"/>',
 };
 ---
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" set:html={paths[name]} />
