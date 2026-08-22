@@ -48,26 +48,39 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
       </div>
 
       <form class="contact-form" aria-label="Project inquiry form" novalidate>
-        <div class="contact-form__row">
-          <label class="field">Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required /></label>
-          <label class="field">Location <span aria-hidden="true">*</span><input name="location" autocomplete="address-level2" placeholder="City or neighbourhood" required /></label>
+        <div class="contact-form__fields">
+          <div class="contact-form__row">
+            <label class="field">Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required /></label>
+            <label class="field">Location <span aria-hidden="true">*</span><input name="location" autocomplete="address-level2" placeholder="City or neighbourhood" required /></label>
+          </div>
+          <div class="contact-form__row">
+            <label class="field">Email<input name="email" type="email" autocomplete="email" /></label>
+            <label class="field">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+          </div>
+          <p class="form-note">Please provide at least one of email or phone.</p>
+          <label class="field">Service interest<select name="service"><option value="">Select a service</option>{services.map((service) => <option value={service.title}>{service.title}</option>)}<option value="Other electrical work">Other electrical work</option></select></label>
+          <fieldset class="contact-method">
+            <legend>Preferred contact method</legend>
+            <label><input type="radio" name="preferred_contact" value="Email" checked /> Email</label>
+            <label><input type="radio" name="preferred_contact" value="Phone" /> Phone</label>
+            <label><input type="radio" name="preferred_contact" value="WhatsApp" /> WhatsApp</label>
+          </fieldset>
+          <label class="field">Project description <span aria-hidden="true">*</span><textarea name="message" required placeholder="Please share a brief description of your project."></textarea></label>
+          <div class="contact-honeypot" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
+          <button class="button form-button" type="submit">Request a Free Quote</button>
+          <p class="contact-form__status" role="status" aria-live="polite"></p>
         </div>
-        <div class="contact-form__row">
-          <label class="field">Email<input name="email" type="email" autocomplete="email" /></label>
-          <label class="field">Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+        <div class="contact-success" role="status" aria-live="polite" tabindex="-1" hidden>
+          <svg class="contact-success__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12 3 3 6-7"></path></svg>
+          <p class="eyebrow">Request Received</p>
+          <h2>Thank you — your request has been received.</h2>
+          <p>Your project details have been sent to Pacific Spirit Electrical. We’ll review them and follow up using your preferred contact method.</p>
+          <div class="contact-success__actions">
+            <button class="button button--outline contact-success__again" type="button">Submit another request</button>
+            <a href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a>
+            <a href="https://wa.me/17788798210" target="_blank" rel="noopener noreferrer"><Icon name="message" /> WhatsApp</a>
+          </div>
         </div>
-        <p class="form-note">Please provide at least one of email or phone.</p>
-        <label class="field">Service interest<select name="service"><option value="">Select a service</option>{services.map((service) => <option value={service.title}>{service.title}</option>)}<option value="Other electrical work">Other electrical work</option></select></label>
-        <fieldset class="contact-method">
-          <legend>Preferred contact method</legend>
-          <label><input type="radio" name="preferred_contact" value="Email" checked /> Email</label>
-          <label><input type="radio" name="preferred_contact" value="Phone" /> Phone</label>
-          <label><input type="radio" name="preferred_contact" value="WhatsApp" /> WhatsApp</label>
-        </fieldset>
-        <label class="field">Project description <span aria-hidden="true">*</span><textarea name="message" required placeholder="Please share a brief description of your project."></textarea></label>
-        <div class="contact-honeypot" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
-        <button class="button form-button" type="submit">Request a Free Quote</button>
-        <p class="contact-form__status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -77,6 +90,26 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
   const form = document.querySelector<HTMLFormElement>('.contact-form');
   const status = form?.querySelector<HTMLElement>('.contact-form__status');
   const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const fields = form?.querySelector<HTMLElement>('.contact-form__fields');
+  const success = form?.querySelector<HTMLElement>('.contact-success');
+  const submitAnother = form?.querySelector<HTMLButtonElement>('.contact-success__again');
+  const firstField = form?.querySelector<HTMLInputElement>('input[name="name"]');
+
+  const showSuccess = () => {
+    if (!form || !fields || !success) return;
+    form.reset();
+    fields.hidden = true;
+    success.hidden = false;
+    success.focus();
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  submitAnother?.addEventListener('click', () => {
+    if (!fields || !success) return;
+    success.hidden = true;
+    fields.hidden = false;
+    firstField?.focus();
+  });
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -95,8 +128,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
     }
 
     if (honeypot) {
-      form.reset();
-      status.textContent = 'Thank you — your request has been received.';
+      showSuccess();
       return;
     }
 
@@ -120,8 +152,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
       });
 
       if (!response.ok) throw new Error(`Webhook returned ${response.status}`);
-      form.reset();
-      status.textContent = 'Thank you — your request has been received.';
+      showSuccess();
     } catch {
       status.textContent = 'We couldn’t send your request. Please call, email, or message us on WhatsApp.';
     } finally {
