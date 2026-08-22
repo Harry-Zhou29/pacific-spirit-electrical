@@ -49,16 +49,14 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
 
       <form class="contact-form" aria-label="Project inquiry form" novalidate>
         <div class="contact-form__fields">
-          <div class="contact-form__row">
-            <label class="field">Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required /></label>
-            <label class="field">Location <span aria-hidden="true">*</span><select name="location_choice" autocomplete="address-level2" required><option value="">Select your location</option><option>Vancouver</option><option>Burnaby</option><option>Richmond</option><option>North Vancouver</option><option>West Vancouver</option><option>New Westminster</option><option>Other Lower Mainland Area</option><option>Not Sure</option></select></label>
+          <div class="contact-form__primary-fields">
+            <label class="field"><span class="field__label">Name <span class="field__required" aria-hidden="true">*</span></span><input name="name" autocomplete="name" required /></label>
+            <label class="field"><span class="field__label">Location <span class="field__required" aria-hidden="true">*</span></span><select name="location_choice" autocomplete="address-level2" required><option value="">Select your location</option><option>Vancouver</option><option>Burnaby</option><option>Richmond</option><option>North Vancouver</option><option>West Vancouver</option><option>New Westminster</option><option>Other Lower Mainland Area</option><option>Not Sure</option></select></label>
+            <label class="field"><span class="field__label">Email</span><input name="email" type="email" autocomplete="email" /></label>
+            <label class="field"><span class="field__label">Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="phone-error" /><span class="field-error" id="phone-error" aria-live="polite"></span></label>
+            <p class="form-note contact-form__contact-note">Please provide at least one of email or phone.</p>
           </div>
           <label class="field contact-form__other-location" hidden>City or community <span aria-hidden="true">*</span><input name="other_location" autocomplete="address-level2" /></label>
-          <div class="contact-form__row">
-            <label class="field">Email<input name="email" type="email" autocomplete="email" /></label>
-            <label class="field">Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="phone-error" /><span class="field-error" id="phone-error" aria-live="polite"></span></label>
-          </div>
-          <p class="form-note">Please provide at least one of email or phone.</p>
           <label class="field">Service interest<select name="service"><option value="">Select a service</option>{services.map((service) => <option value={service.title}>{service.title}</option>)}<option value="Other electrical work">Other electrical work</option></select></label>
           <fieldset class="contact-method">
             <legend>Preferred contact method</legend>
