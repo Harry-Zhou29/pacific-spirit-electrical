@@ -183,16 +183,16 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .page-hero p { max-width: 660px; color: #e1eae3; font-size: 1.13rem; }
 .page-hero p.page-hero__creds { max-width: none; margin-top: .9rem; color: rgba(225, 234, 227, .75); font-size: .9rem; font-weight: 700; letter-spacing: .02em; }
 .services-hero { padding: clamp(3.25rem, 5.5vw, 5rem) 0; }
-.services-hero__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem); }
-.services-hero h1 { max-width: 720px; font-size: clamp(3rem, 4.8vw, 4.5rem); }
+.services-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(390px, .95fr); align-items: center; gap: clamp(2.5rem, 5vw, 4.75rem); }
+.services-hero h1 { max-width: 780px; font-size: clamp(3.1rem, 4.3vw, 4.2rem); line-height: 1.02; }
 .services-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.8rem 0 1.15rem; }
 .services-hero .button--outline { border-color: rgba(255, 255, 255, .55); color: #fff; }
 .services-hero .services-hero__primary { border-color: #d5a32b; background: #d5a32b; color: var(--navy-deep); }
 .services-hero .services-hero__primary:hover { border-color: #e3b644; background: #e3b644; }
-.services-hero__popular { border: 1px solid rgba(220, 231, 216, .3); background: rgba(68, 107, 88, .22); padding: clamp(1.5rem, 3vw, 2.25rem); }
-.services-hero__popular > div { display: grid; gap: .3rem; }
-.services-hero__popular span { display: flex; align-items: center; gap: .75rem; border-bottom: 1px solid rgba(255, 255, 255, .14); padding: .75rem 0; color: #fff; font-size: .9rem; font-weight: 720; }
-.services-hero__popular .icon { flex: 0 0 auto; color: #e0ae34; }
+.services-hero__popular { min-height: 350px; align-self: center; border: 1px solid rgba(220, 231, 216, .32); background: rgba(68, 107, 88, .22); padding: clamp(2rem, 3.5vw, 2.75rem); }
+.services-hero__popular > div { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.services-hero__popular span { display: flex; min-height: 116px; flex-direction: column; align-items: flex-start; justify-content: center; gap: .8rem; border: 1px solid rgba(220, 231, 216, .22); background: rgba(220, 231, 216, .055); padding: 1.1rem; color: #fff; font-size: clamp(1rem, 1.25vw, 1.08rem); font-weight: 720; line-height: 1.3; }
+.services-hero__popular .icon { width: 1.75rem; height: 1.75rem; flex: 0 0 auto; color: #e0ae34; }
 .services-grid { grid-template-columns: repeat(3, 1fr); }
 .services-grid .service-card { min-height: 280px; }
 .services-grid .service-card h3 { font-size: 1.4rem; }
@@ -237,7 +237,7 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 
 @media (max-width: 900px) {
   .services-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .services-hero__popular { max-width: 620px; }
+  .services-hero__popular { width: 100%; max-width: 680px; }
 }
 
 @media (min-width: 1051px) {
@@ -270,6 +270,8 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
   .hero .lead { font-size: 1.02rem; line-height: 1.6; }
   .hero__actions { display: grid; grid-template-columns: 1fr; }
   .hero .button { width: 100%; }
+  .services-hero__popular { min-height: 0; }
+  .services-hero__popular > div { grid-template-columns: 1fr; }
   .trust-strip__inner { grid-template-columns: 1fr; padding: .65rem 0; }
   .trust-strip article, .trust-strip article:first-child, .trust-strip article:last-child { border-left: 0; padding: .8rem .35rem; }
   .trust-strip article + article { border-top: 1px solid rgba(255, 255, 255, .12); }
