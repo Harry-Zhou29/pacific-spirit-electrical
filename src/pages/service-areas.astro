@@ -2,7 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
-const title = 'Electrical Service Areas | Vancouver & Greater Vancouver';
-const description = 'Pacific Spirit Electrical provides residential electrical services for homeowners in Vancouver and Greater Vancouver, British Columbia.';
+const title = 'Electrical Service Areas | Vancouver & Lower Mainland';
+const description = 'Pacific Spirit Electrical serves Vancouver, Burnaby, Richmond, the North Shore, New Westminster, and nearby Lower Mainland communities.';
+
+const areas = [
+  { name: 'Vancouver', description: 'Residential and light commercial electrical service across Vancouver neighbourhoods.' },
+  { name: 'Burnaby', description: 'Electrical repairs, upgrades, installations, and project support.' },
+  { name: 'Richmond', description: 'Practical electrical service for homes and light commercial properties.' },
+  { name: 'North Shore', description: 'Service availability for North Vancouver and West Vancouver projects.' },
+  { name: 'New Westminster', description: 'Electrical service for established homes, renovations, and property improvements.' },
+  { name: 'Nearby Lower Mainland Areas', description: 'Contact us to confirm availability based on location, project scope, and scheduling.' },
+];
 ---
-<BaseLayout {title} {description} path="/service-areas"><section class="page-hero"><div class="shell"><p class="eyebrow">Where we work</p><h1>Vancouver and Greater Vancouver residential electrical service.</h1><p>Pacific Spirit Electrical is here for homeowners in Vancouver and across the Greater Vancouver area.</p></div></section><section class="section section--white"><div class="shell area-panel"><div><p class="eyebrow">Our service area</p><h2>Local service for the homes around us.</h2><p>From a small electrical concern to a home improvement plan, Pacific Spirit Electrical serves residential customers across Vancouver and Greater Vancouver.</p><p>Not sure whether your home is within the service area? Send an email with your location and a brief outline of the work you are considering.</p><a class="button button--outline" href={`mailto:${site.email}?subject=Service%20area%20inquiry`}><Icon name="mail" /> Ask about your area</a></div><div class="area-art" aria-hidden="true"><Icon name="map" /></div></div></section><section class="section"><div class="shell copy"><p class="eyebrow">Planning electrical work</p><h2>A useful first note includes the essentials.</h2><ul class="list"><li>Your neighbourhood or municipality</li><li>A short description of the electrical issue or project</li><li>Whether the work is connected to a renovation, EV charger, heat pump, lighting update, or another home improvement</li></ul></div></section></BaseLayout>
+
+<BaseLayout {title} {description} path="/service-areas/">
+  <section class="page-hero service-areas-hero">
+    <div class="shell service-areas-hero__grid">
+      <div>
+        <p class="eyebrow">Where We Work</p>
+        <h1>Electrical service across Vancouver &amp; nearby communities.</h1>
+        <p>Vancouver-based residential and light commercial electrical service across Vancouver and surrounding Lower Mainland communities.</p>
+        <div class="service-areas-hero__actions">
+          <a class="button service-areas-hero__primary" href="/contact/">Request a Free Quote</a>
+          <a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a>
+        </div>
+      </div>
+      <aside class="service-areas-hero__panel" aria-labelledby="primary-service-areas">
+        <Icon name="location" />
+        <h2 id="primary-service-areas">Primary Service Areas</h2>
+        <ul>{areas.map((area) => <li>{area.name}</li>)}</ul>
+        <p>Contact us to confirm availability for your location and project.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--white service-areas-content">
+    <div class="shell">
+      <div class="service-areas-content__head">
+        <p class="eyebrow">Local Coverage</p>
+        <h2>Vancouver-based service, with practical coverage.</h2>
+        <p>Service availability depends on location, project scope, and scheduling. These are the primary communities served by Pacific Spirit Electrical.</p>
+      </div>
+      <div class="service-areas-grid">
+        {areas.map((area) => (
+          <article class="service-area-card">
+            <Icon name="location" />
+            <h3>{area.name}</h3>
+            <p>{area.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta service-areas-cta">
+    <div class="shell cta__inner">
+      <div>
+        <p class="eyebrow">Check Your Location</p>
+        <h2>Not sure whether your property is within the service area?</h2>
+        <p>Share your location and a short description of the electrical work you are considering.</p>
+      </div>
+      <div class="cta__actions">
+        <a class="button service-areas-cta__primary" href="/contact/">Request a Free Quote</a>
+        <a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a>
+        <a class="cta__whatsapp" href="https://wa.me/17788798210" target="_blank" rel="noopener noreferrer">WhatsApp <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
