@@ -166,12 +166,13 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .footer__grid .eyebrow { margin-top: 0; color: var(--green-pale); }
 .footer__brand { display: block; width: min(100%, 270px); margin-bottom: 1.25rem; border-radius: 2px; background: var(--cream); padding: .45rem .55rem; }
 .footer__brand img { display: block; width: 100%; height: auto; }
-.footer-email, .footer-phone, .footer-whatsapp { display: flex; min-width: 0; align-items: center; gap: .65rem; color: #fff; font-weight: 650; }
-.footer-email .icon, .footer-phone .icon, .footer-whatsapp .icon { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; color: var(--green-pale); }
+.footer-email, .footer-phone, .footer-whatsapp, .footer-wechat { display: flex; min-width: 0; align-items: center; gap: .65rem; color: #fff; font-weight: 650; }
+.footer-email .icon, .footer-phone .icon, .footer-whatsapp .icon, .footer-wechat .icon { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; color: var(--green-pale); }
 .footer-email { white-space: nowrap; font-size: clamp(.79rem, .92vw, .92rem); }
 .footer-contact { min-width: 0; }
 .footer-contact__intro { margin: 0 0 1rem; color: rgba(215, 224, 218, .72); font-size: .9rem; }
 .footer-contact > a + a:not(.footer-quote) { margin-top: .75rem; }
+.footer-wechat{width:max-content;margin-top:.75rem;padding:0;border:0;background:none;cursor:pointer;font:inherit;text-decoration:underline;text-underline-offset:2px}
 .footer-quote { margin-top: 1.35rem; border-color: #d5a32b; background: #d5a32b; color: var(--navy-deep); }
 .footer-quote:hover { border-color: #e3b644; background: #e3b644; }
 .footer-creds { margin: 1.1rem 0 0; color: var(--green-pale); font-size: .85rem; font-weight: 700; letter-spacing: .02em; }
