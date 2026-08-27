@@ -12,6 +12,12 @@ export const site = {
   qualification: 'Red Seal Electrician',
   businessType: 'Residential & Light Commercial',
   freeEstimates: true,
+  social: {
+    instagram: 'https://www.instagram.com/pacificspiritelectrical/',
+    facebook: 'https://www.facebook.com/pacificspiritelectrical',
+    xiaohongshuId: 'Harry_zhou310',
+    wechatId: 'harry_zhou310',
+  },
 } as const;
 
 export const services = [

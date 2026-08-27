@@ -2,19 +2,22 @@
 import Brand from './Brand.astro';
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import { getLang, localizedPath, languageNames, languages, ui } from '../data/i18n';
 const path = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.replace(/\/+$/, '')}/`;
-const links = [{ href: '/', label: 'Home' }, { href: '/services/', label: 'Services' }, { href: '/about/', label: 'About' }, { href: '/service-areas/', label: 'Service Areas' }, { href: '/contact/', label: 'Contact' }];
+const lang = getLang(path); const t = ui[lang];
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const links = [{ href: `${prefix}/`, label: t.home }, { href: `${prefix}/services/`, label: t.services }, { href: `${prefix}/about/`, label: t.about }, { href: `${prefix}/service-areas/`, label: t.areas }, { href: `${prefix}/contact/`, label: t.contact }];
 ---
 <header class="site-header">
   <div class="header-trust">
     <div class="shell header-trust__inner">
       <div class="header-trust__claims">
         <Icon name="bolt" /><strong>Red Seal Electrician</strong>
-        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">Serving Vancouver &amp; the Lower Mainland</span>
-        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">Quality work, done right</span>
+        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">{t.serving}</span>
+        <span class="header-trust__separator" aria-hidden="true">•</span><span class="header-trust__extended">{t.quality}</span>
       </div>
       <div class="header-trust__contacts">
-        <a href={`tel:${site.telephone}`}><Icon name="phone" /><span class="header-trust__phone">{site.phone}</span><span class="header-trust__call">Call</span></a>
+        <a href={`tel:${site.telephone}`}><Icon name="phone" /><span class="header-trust__phone">{site.phone}</span><span class="header-trust__call">{t.call}</span></a>
         <a href="https://wa.me/17788798210" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
@@ -24,12 +27,14 @@ const links = [{ href: '/', label: 'Home' }, { href: '/services/', label: 'Servi
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
     </nav>
-    <a class="button button--small header__quote" href="/contact/">Get a Quote <span aria-hidden="true">→</span></a>
+    <nav class="language-switcher" aria-label={t.lang}>{languages.map((code) => <a href={localizedPath(path, code)} lang={code} aria-current={lang === code ? 'true' : undefined}>{languageNames[code]}</a>)}</nav>
+    <a class="button button--small header__quote" href={`${prefix}/contact/`}>{t.quote} <span aria-hidden="true">→</span></a>
     <details class="mobile-menu">
       <summary aria-label="Toggle navigation"><span></span><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
         {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
-        <a class="button" href="/contact/">Get a Quote</a>
+        <div class="language-switcher language-switcher--mobile">{languages.map((code) => <a href={localizedPath(path, code)} aria-current={lang === code ? 'true' : undefined}>{languageNames[code]}</a>)}</div>
+        <a class="button" href={`${prefix}/contact/`}>{t.quote}</a>
       </nav>
     </details>
   </div>

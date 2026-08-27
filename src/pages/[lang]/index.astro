@@ -1,0 +1,6 @@
+---
+import LocalizedPage from '../../components/LocalizedPage.astro';
+export function getStaticPaths() { return ['zh','es'].map(lang => ({ params:{ lang }, props:{ lang } })); }
+const { lang } = Astro.props as { lang: 'zh' | 'es' };
+---
+<LocalizedPage lang={lang} page="home" />

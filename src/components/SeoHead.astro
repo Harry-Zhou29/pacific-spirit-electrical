@@ -1,19 +1,25 @@
 ---
 import { site } from '../data/site';
+import { getLang, localizedPath } from '../data/i18n';
 interface Props { title: string; description: string; path?: string }
 const { title, description, path = '/' } = Astro.props;
 const canonical = new URL(path, site.domain).toString();
+const lang = getLang(path);
+const alternates = [{ code: 'en-CA', lang: 'en' }, { code: 'zh-CN', lang: 'zh' }, { code: 'es', lang: 'es' }] as const;
 const schema = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, url: site.domain, email: site.email, telephone: site.telephone, description: site.tagline, address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: 'CA' }, areaServed: [{ '@type': 'City', name: 'Vancouver' }, { '@type': 'City', name: 'Burnaby' }, { '@type': 'City', name: 'Richmond' }, { '@type': 'City', name: 'North Vancouver' }, { '@type': 'City', name: 'West Vancouver' }, { '@type': 'City', name: 'New Westminster' }, { '@type': 'AdministrativeArea', name: 'Nearby Lower Mainland communities' }], hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'Red Seal', name: site.qualification } };
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+{alternates.map((item) => <link rel="alternate" hreflang={item.code} href={new URL(localizedPath(path, item.lang), site.domain).toString()} />)}
+<link rel="alternate" hreflang="x-default" href={new URL(localizedPath(path, 'en'), site.domain).toString()} />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
+<meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : lang === 'es' ? 'es_ES' : 'en_CA'} />
 <meta property="og:image" content={`${site.domain}/images/pacificspiritelectrical_logo.png`} />
 <meta property="og:image:width" content="1254" />
 <meta property="og:image:height" content="1254" />

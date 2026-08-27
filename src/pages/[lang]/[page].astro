@@ -1,0 +1,7 @@
+---
+import LocalizedPage from '../../components/LocalizedPage.astro';
+const pages = ['services','about','service-areas','contact','privacy'] as const;
+export function getStaticPaths() { return ['zh','es'].flatMap(lang => ['services','about','service-areas','contact','privacy'].map(page => ({ params:{ lang, page }, props:{ lang, page } }))); }
+const { lang, page } = Astro.props as { lang: 'zh' | 'es'; page: typeof pages[number] };
+---
+<LocalizedPage lang={lang} page={page} />
