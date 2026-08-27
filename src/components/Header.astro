@@ -27,7 +27,10 @@ const links = [{ href: `${prefix}/`, label: t.home }, { href: `${prefix}/service
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map((link) => <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>)}
     </nav>
-    <nav class="language-switcher" aria-label={t.lang}>{languages.map((code) => <a href={localizedPath(path, code)} lang={code} aria-current={lang === code ? 'true' : undefined}>{languageNames[code]}</a>)}</nav>
+    <details class="language-menu">
+      <summary aria-label={`${t.lang}: ${languageNames[lang]}`}><Icon name="globe" /><span>{languageNames[lang]}</span><span class="language-menu__chevron" aria-hidden="true">⌄</span></summary>
+      <nav aria-label={t.lang}>{languages.map((code) => <a href={localizedPath(path, code)} lang={code} aria-current={lang === code ? 'true' : undefined}><span>{languageNames[code]}</span><small>{code === 'en' ? 'English' : code === 'zh' ? '简体中文' : 'Español'}</small></a>)}</nav>
+    </details>
     <a class="button button--small header__quote" href={`${prefix}/contact/`}>{t.quote} <span aria-hidden="true">→</span></a>
     <details class="mobile-menu">
       <summary aria-label="Toggle navigation"><span></span><span></span><span></span></summary>
