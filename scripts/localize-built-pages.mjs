@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy', 'projects/bathroom-vanity-lighting-upgrade'];
+const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy', 'projects/bathroom-vanity-lighting-upgrade', 'projects/warehouse-cctv-installation'];
 
 const common = {
   zh: {
@@ -57,14 +57,47 @@ Object.assign(pageText.es, {
   'Lighting Control':'Control de iluminación','From standard switching to adjustable light.':'De interruptores estándar a luz regulable.','A slide dimmer gives the homeowner practical control over bathroom brightness while retaining a familiar wall-switch layout.':'Un regulador deslizante permite controlar el brillo manteniendo un formato de interruptor familiar.','Before':'Antes','Standard on/off switching.':'Control estándar de encendido y apagado.','After':'Después','New slide dimmer for adjustable lighting.':'Nuevo regulador deslizante para ajustar la luz.','Planning a Lighting Upgrade?':'¿Planea mejorar la iluminación?','Tell us what you would like to change.':'Cuéntenos qué desea cambiar.','Share a few details about your existing fixture, preferred replacement, and project location.':'Comparta información sobre la luminaria existente, el reemplazo deseado y la ubicación.','Request a Similar Project Quote':'Solicitar presupuesto para un proyecto similar'
 });
 
+Object.assign(pageText.zh, {
+  'Warehouse CCTV camera &amp; power installation.':'仓库 CCTV 摄像头与电源安装。',
+  'Two Wi-Fi cameras were installed in a Vancouver warehouse, with new nearby power points and complete mobile app setup and testing.':'在温哥华一处仓库安装两台 Wi-Fi 摄像头，新增就近电源点，并完成手机 App 配置与测试。',
+  'Two securely mounted CCTV cameras':'稳固安装两台 CCTV 摄像头','New nearby electrical power points':'新增就近电源点','Wi-Fi, mobile app, angle, and recording tests':'完成 Wi-Fi、手机 App、角度及录像测试','Previous project: Bathroom vanity lighting upgrade':'上一个案例：浴室镜前灯升级',
+  'Warehouse CCTV Camera &amp; Power Installation | Pacific Spirit Electrical':'仓库 CCTV 摄像头与电源安装 | Pacific Spirit Electrical','Recent Commercial Work':'近期商业项目',
+  'Two Wi-Fi cameras were installed at selected warehouse coverage points, with new nearby power points, mobile app setup, and final viewing and recording tests.':'在仓库选定的监控位置安装两台 Wi-Fi 摄像头，新增就近电源点，并完成手机 App 配置、画面及录像测试。',
+  'CCTV and electrical installation':'CCTV 与电气安装','Two cameras and new power points':'两台摄像头及新增电源点','Warehouse / light commercial':'仓库 / 轻型商业物业',
+  'Camera coverage with practical local power.':'合理监控覆盖与就近供电。','The work began by confirming useful camera sight lines and selecting practical electrical supply locations. New power points and electrical boxes were added close to the planned camera positions to support a tidy, reliable installation.':'施工前先确认有效的摄像头视角，并选择合理的供电位置。在计划安装摄像头的位置附近新增电源点和电气盒，以实现整洁可靠的安装。','Both cameras were securely mounted, connected to the warehouse Wi-Fi network, and configured in the mobile app. The final camera angles, live view, and recording operation were checked before completion.':'两台摄像头均已牢固安装，连接仓库 Wi-Fi，并在手机 App 中完成配置。完工前检查了摄像头角度、实时画面和录像功能。',
+  'Two camera positions, installed and tested.':'两个摄像头点位均已安装并测试。','The cameras were positioned to cover separate warehouse areas while keeping power available close to each device.':'两台摄像头分别覆盖仓库的不同区域，并在设备附近提供电源。','Camera Position One':'摄像头点位一','Camera mounted beside an existing electrical service area with a nearby power point.':'摄像头安装在现有电气设施附近，并配置就近电源点。','Camera Position Two':'摄像头点位二','Second camera installed high on the wall for a separate viewing angle.':'第二台摄像头安装在墙面高处，提供另一个监控角度。',
+  'Installation Planning':'安装规划','Power locations planned before mounting.':'安装前规划电源位置。','Camera and electrical locations were reviewed together so each device could be mounted where it provided useful coverage and practical access to power.':'统一规划摄像头和电源位置，使每台设备既能获得有效监控范围，也便于接入电源。','Before Installation':'安装前','Proposed mounting and power locations marked during site planning.':'现场规划时标记拟安装位置和电源位置。',
+  'Planning CCTV for Your Property?':'计划为物业安装 CCTV？','Tell us about the areas you need to monitor.':'告诉我们您需要监控哪些区域。','Share the property type, preferred camera locations, available power, and whether you need help with network and mobile app setup.':'请提供物业类型、希望安装摄像头的位置、现有电源情况，以及是否需要网络和手机 App 配置。'
+});
+
+Object.assign(pageText.es, {
+  'Warehouse CCTV camera &amp; power installation.':'Instalación de cámaras CCTV y alimentación en almacén.','Two Wi-Fi cameras were installed in a Vancouver warehouse, with new nearby power points and complete mobile app setup and testing.':'Se instalaron dos cámaras Wi-Fi en un almacén de Vancouver, con nuevos puntos de alimentación cercanos y configuración y pruebas de la aplicación móvil.','Two securely mounted CCTV cameras':'Dos cámaras CCTV instaladas de forma segura','New nearby electrical power points':'Nuevos puntos de alimentación cercanos','Wi-Fi, mobile app, angle, and recording tests':'Pruebas de Wi-Fi, aplicación móvil, ángulos y grabación','Previous project: Bathroom vanity lighting upgrade':'Proyecto anterior: mejora de iluminación de baño',
+  'Warehouse CCTV Camera &amp; Power Installation | Pacific Spirit Electrical':'Instalación de CCTV y alimentación en almacén | Pacific Spirit Electrical','Recent Commercial Work':'Trabajo comercial reciente','Two Wi-Fi cameras were installed at selected warehouse coverage points, with new nearby power points, mobile app setup, and final viewing and recording tests.':'Se instalaron dos cámaras Wi-Fi en puntos seleccionados del almacén, con nuevos puntos de alimentación cercanos, configuración móvil y pruebas finales de imagen y grabación.','CCTV and electrical installation':'Instalación de CCTV y eléctrica','Two cameras and new power points':'Dos cámaras y nuevos puntos de alimentación','Warehouse / light commercial':'Almacén / comercial ligero',
+  'Camera coverage with practical local power.':'Cobertura de cámaras con alimentación cercana y práctica.','The work began by confirming useful camera sight lines and selecting practical electrical supply locations. New power points and electrical boxes were added close to the planned camera positions to support a tidy, reliable installation.':'El trabajo comenzó confirmando los ángulos útiles y seleccionando ubicaciones prácticas para la alimentación. Se añadieron nuevos puntos de alimentación y cajas eléctricas cerca de las cámaras para una instalación ordenada y fiable.','Both cameras were securely mounted, connected to the warehouse Wi-Fi network, and configured in the mobile app. The final camera angles, live view, and recording operation were checked before completion.':'Las dos cámaras se fijaron de forma segura, se conectaron al Wi-Fi del almacén y se configuraron en la aplicación móvil. Antes de finalizar se comprobaron los ángulos, la imagen en directo y la grabación.',
+  'Two camera positions, installed and tested.':'Dos posiciones de cámara, instaladas y probadas.','The cameras were positioned to cover separate warehouse areas while keeping power available close to each device.':'Las cámaras se colocaron para cubrir distintas zonas del almacén, con alimentación disponible cerca de cada dispositivo.','Camera Position One':'Posición de cámara uno','Camera mounted beside an existing electrical service area with a nearby power point.':'Cámara instalada junto a una zona de servicio eléctrico con un punto de alimentación cercano.','Camera Position Two':'Posición de cámara dos','Second camera installed high on the wall for a separate viewing angle.':'Segunda cámara instalada en alto para obtener otro ángulo de visión.',
+  'Installation Planning':'Planificación de la instalación','Power locations planned before mounting.':'Ubicaciones de alimentación planificadas antes del montaje.','Camera and electrical locations were reviewed together so each device could be mounted where it provided useful coverage and practical access to power.':'Las ubicaciones de las cámaras y de la alimentación se revisaron conjuntamente para obtener buena cobertura y acceso práctico a la corriente.','Before Installation':'Antes de la instalación','Proposed mounting and power locations marked during site planning.':'Puntos propuestos de montaje y alimentación marcados durante la planificación.','Planning CCTV for Your Property?':'¿Planea instalar CCTV en su propiedad?','Tell us about the areas you need to monitor.':'Cuéntenos qué zonas necesita vigilar.','Share the property type, preferred camera locations, available power, and whether you need help with network and mobile app setup.':'Indique el tipo de propiedad, las ubicaciones preferidas, la alimentación disponible y si necesita ayuda con la red y la aplicación móvil.'
+});
+
 const projectMeta = {
-  zh: {
-    title: '浴室镜前灯与调光开关升级 | Pacific Spirit Electrical',
-    description: '近期浴室照明案例：升级两套镜前灯并安装两个调光开关，让日常照明更舒适、更灵活。',
+  'projects/bathroom-vanity-lighting-upgrade': {
+    zh: {
+      title: '浴室镜前灯与调光开关升级 | Pacific Spirit Electrical',
+      description: '近期浴室照明案例：升级两套镜前灯并安装两个调光开关，让日常照明更舒适、更灵活。',
+    },
+    es: {
+      title: 'Iluminación de baño y reguladores | Pacific Spirit Electrical',
+      description: 'Proyecto reciente: dos luminarias de baño renovadas y dos reguladores instalados para una iluminación más cómoda y flexible.',
+    },
   },
-  es: {
-    title: 'Iluminación de baño y reguladores | Pacific Spirit Electrical',
-    description: 'Proyecto reciente: dos luminarias de baño renovadas y dos reguladores instalados para una iluminación más cómoda y flexible.',
+  'projects/warehouse-cctv-installation': {
+    zh: {
+      title: '温哥华仓库 CCTV 监控安装 | Pacific Spirit Electrical',
+      description: '温哥华仓库 CCTV 案例：安装两台 Wi-Fi 摄像头、新增电源点，并完成手机 App、角度与录像测试。',
+    },
+    es: {
+      title: 'Instalación de CCTV en almacén | Pacific Spirit Electrical',
+      description: 'Proyecto de CCTV en un almacén de Vancouver con dos cámaras Wi-Fi, nuevos puntos de alimentación, configuración móvil y pruebas finales.',
+    },
   },
 };
 
@@ -86,8 +119,8 @@ function localize(html, lang, page) {
   html = html.replace(/<link rel="canonical" href="[^"]+">/, `<link rel="canonical" href="${localizedUrl}">`);
   html = html.replace(/<meta property="og:url" content="[^"]+">/, `<meta property="og:url" content="${localizedUrl}">`);
   html = html.replace(/<meta property="og:locale" content="[^"]+">/, `<meta property="og:locale" content="${lang === 'zh' ? 'zh_CN' : 'es_ES'}">`);
-  if (page === 'projects/bathroom-vanity-lighting-upgrade') {
-    const meta = projectMeta[lang];
+  if (projectMeta[page]) {
+    const meta = projectMeta[page][lang];
     html = html.replace(/<meta name="description" content="[^"]+">/, `<meta name="description" content="${meta.description}">`);
     html = html.replace(/<meta property="og:title" content="[^"]+">/, `<meta property="og:title" content="${meta.title}">`);
     html = html.replace(/<meta property="og:description" content="[^"]+">/, `<meta property="og:description" content="${meta.description}">`);

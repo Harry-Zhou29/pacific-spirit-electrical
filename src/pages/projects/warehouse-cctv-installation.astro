@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+
+const title = 'Warehouse CCTV Camera & Power Installation | Pacific Spirit Electrical';
+const description = 'A Vancouver warehouse CCTV project with two Wi-Fi cameras, new nearby power points, mobile app setup, and final coverage and recording tests.';
+---
+
+<BaseLayout {title} {description} path="/projects/warehouse-cctv-installation/">
+  <section class="page-hero project-hero">
+    <div class="shell project-hero__grid">
+      <div>
+        <p class="eyebrow">Recent Commercial Work</p>
+        <h1>Warehouse CCTV camera &amp; power installation.</h1>
+        <p>Two Wi-Fi cameras were installed at selected warehouse coverage points, with new nearby power points, mobile app setup, and final viewing and recording tests.</p>
+      </div>
+      <aside class="project-summary" aria-label="Project summary">
+        <p class="eyebrow">Project Details</p>
+        <dl>
+          <div><dt>Service</dt><dd>CCTV and electrical installation</dd></div>
+          <div><dt>Scope</dt><dd>Two cameras and new power points</dd></div>
+          <div><dt>Property</dt><dd>Warehouse / light commercial</dd></div>
+          <div><dt>Area</dt><dd>Vancouver</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell project-copy">
+      <div>
+        <p class="eyebrow">The Project</p>
+        <h2>Camera coverage with practical local power.</h2>
+      </div>
+      <div class="copy">
+        <p>The work began by confirming useful camera sight lines and selecting practical electrical supply locations. New power points and electrical boxes were added close to the planned camera positions to support a tidy, reliable installation.</p>
+        <p>Both cameras were securely mounted, connected to the warehouse Wi-Fi network, and configured in the mobile app. The final camera angles, live view, and recording operation were checked before completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section project-gallery-section">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Completed Installation</p><h2>Two camera positions, installed and tested.</h2></div><p>The cameras were positioned to cover separate warehouse areas while keeping power available close to each device.</p></div>
+      <div class="project-photo-grid">
+        <figure><img src="/images/projects/warehouse-cctv-camera-1.webp" width="1080" height="1350" alt="Wi-Fi CCTV camera installed beside electrical conduit in a Vancouver warehouse" loading="eager" decoding="async" /><figcaption><strong>Camera Position One</strong><span>Camera mounted beside an existing electrical service area with a nearby power point.</span></figcaption></figure>
+        <figure><img src="/images/projects/warehouse-cctv-camera-2.webp" width="1080" height="1350" alt="Second Wi-Fi CCTV camera mounted high on a warehouse wall" loading="eager" decoding="async" /><figcaption><strong>Camera Position Two</strong><span>Second camera installed high on the wall for a separate viewing angle.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Installation Planning</p><h2>Power locations planned before mounting.</h2></div><p>Camera and electrical locations were reviewed together so each device could be mounted where it provided useful coverage and practical access to power.</p></div>
+      <div class="project-photo-grid project-photo-grid--single">
+        <figure><img src="/images/projects/warehouse-cctv-power-planning.webp" width="1080" height="1350" alt="Marked CCTV camera and electrical power locations before installation in a warehouse" loading="lazy" decoding="async" /><figcaption><strong>Before Installation</strong><span>Proposed mounting and power locations marked during site planning.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta project-cta"><div class="shell cta__inner"><div><p class="eyebrow">Planning CCTV for Your Property?</p><h2>Tell us about the areas you need to monitor.</h2><p>Share the property type, preferred camera locations, available power, and whether you need help with network and mobile app setup.</p></div><div class="cta__actions"><a class="button cta__primary" href="/contact/?service=Other%20electrical%20work#quote-form">Request a Similar Project Quote</a><a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a></div></div></section>
+</BaseLayout>

@@ -340,6 +340,9 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .recent-work__content ul { display: grid; gap: .7rem; margin: 1.5rem 0 2rem; padding: 0; list-style: none; }
 .recent-work__content li { display: flex; align-items: center; gap: .65rem; color: var(--ink); font-weight: 700; }
 .recent-work__content li .icon { width: 1.2rem; height: 1.2rem; flex: 0 0 auto; color: #c89424; }
+.recent-work__previous { margin-top: 1.15rem; font-size: .86rem; font-weight: 700; }
+.recent-work__previous a { display: inline-flex; align-items: center; gap: .35rem; color: var(--forest); }
+.recent-work__previous .icon { width: 1rem; height: 1rem; }
 
 .project-hero__grid { display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: clamp(2.5rem, 7vw, 6rem); }
 .project-hero h1 { max-width: 800px; font-size: clamp(3rem, 5.4vw, 5rem); }
@@ -356,6 +359,7 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .project-photo-grid figcaption strong { color: var(--navy); font-size: 1rem; }
 .project-photo-grid figcaption span { color: #5a6a6d; font-size: .86rem; }
 .project-photo-grid--detail { max-width: 900px; margin: 0 auto; }
+.project-photo-grid--single { max-width: 620px; grid-template-columns: 1fr; margin: 0 auto; }
 
 @media (max-width: 1050px) {
   .desktop-nav, .header__quote { display: none; }
