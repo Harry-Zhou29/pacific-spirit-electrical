@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy'];
+const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy', 'projects/bathroom-vanity-lighting-upgrade'];
 
 const common = {
   zh: {
@@ -26,6 +26,48 @@ const pageText = {
   }
 };
 
+Object.assign(pageText.zh, {
+  'Recent Work':'近期案例',
+  'Bathroom vanity lighting &amp; dimmer upgrade.':'浴室镜前灯与调光开关升级。',
+  'Two bathroom vanity fixtures were updated as part of one residential project, with new slide dimmers added for comfortable, adjustable lighting.':'同一住宅项目中升级了两套浴室镜前灯，并安装滑动式调光开关，让照明更加舒适灵活。',
+  'Two vanity fixture replacements':'更换两套镜前灯',
+  'Two compatible slide dimmers':'安装两个兼容滑动式调光开关',
+  'Brighter, flexible bathroom lighting':'更明亮、灵活的浴室照明',
+  'View the project':'查看项目',
+  'Bathroom Vanity Lighting &amp; Dimmer Upgrade | Pacific Spirit Electrical':'浴室镜前灯与调光开关升级 | Pacific Spirit Electrical',
+  'Recent Electrical Work':'近期电气案例',
+  'Two bathroom vanity fixtures were updated as part of one residential project, with new dimmer controls added for more flexible everyday lighting.':'同一住宅项目中升级了两套浴室镜前灯，并增加调光控制，让日常照明更灵活。',
+  'Project Details':'项目详情','Service':'服务','Lighting installation':'照明安装','Scope':'工作范围','Two vanity fixtures and two dimmers':'两套镜前灯和两个调光开关','Property':'物业类型','Residential':'住宅','Area':'区域','Vancouver &amp; Lower Mainland':'温哥华及大温地区',
+  'The Project':'项目内容','Updated lighting with practical control.':'升级照明与实用调光控制。',
+  'The existing bathroom lighting was replaced with updated vanity fixtures selected by the homeowner. Each lighting location was completed as part of the same project, and compatible slide dimmers were installed to provide adjustable light levels.':'按照屋主选择，更换了现有浴室镜前灯。同一项目中的两个灯位均完成升级，并安装兼容的滑动式调光开关，以调节照明亮度。',
+  'The result is brighter, cleaner-looking vanity lighting with the flexibility to reduce brightness when full output is not needed.':'升级后的镜前灯更加明亮整洁，并可在不需要全亮时降低亮度。',
+  'Lighting Upgrade':'照明升级','Existing fixture and completed installation.':'原有灯具与完成后的安装。','These photos show two lighting locations completed during the same residential project.':'以下照片展示同一住宅项目中完成的两个灯位。','Existing Fixture':'原有灯具','Older bathroom vanity lighting before the project.':'项目开始前的旧浴室镜前灯。','Completed Installation':'完成安装','Updated vanity lighting installed and operating.':'新镜前灯已安装并正常工作。',
+  'Lighting Control':'照明控制','From standard switching to adjustable light.':'从普通开关升级为可调光控制。','A slide dimmer gives the homeowner practical control over bathroom brightness while retaining a familiar wall-switch layout.':'滑动式调光开关在保留熟悉开关布局的同时，让屋主可以方便地调节浴室亮度。','Before':'升级前','Standard on/off switching.':'普通开/关控制。','After':'升级后','New slide dimmer for adjustable lighting.':'新滑动式调光开关，可调节照明亮度。',
+  'Planning a Lighting Upgrade?':'计划升级照明？','Tell us what you would like to change.':'告诉我们您希望如何升级。','Share a few details about your existing fixture, preferred replacement, and project location.':'请提供现有灯具、希望更换的款式和项目地点等信息。','Request a Similar Project Quote':'申请类似项目报价'
+});
+
+Object.assign(pageText.es, {
+  'Recent Work':'Trabajo reciente',
+  'Bathroom vanity lighting &amp; dimmer upgrade.':'Mejora de iluminación de baño y reguladores.',
+  'Two bathroom vanity fixtures were updated as part of one residential project, with new slide dimmers added for comfortable, adjustable lighting.':'Se actualizaron dos luminarias de baño y se añadieron reguladores deslizantes para una iluminación cómoda y ajustable.',
+  'Two vanity fixture replacements':'Dos luminarias de baño reemplazadas','Two compatible slide dimmers':'Dos reguladores deslizantes compatibles','Brighter, flexible bathroom lighting':'Iluminación de baño más clara y flexible','View the project':'Ver el proyecto',
+  'Bathroom Vanity Lighting &amp; Dimmer Upgrade | Pacific Spirit Electrical':'Iluminación de baño y reguladores | Pacific Spirit Electrical','Recent Electrical Work':'Trabajo eléctrico reciente','Two bathroom vanity fixtures were updated as part of one residential project, with new dimmer controls added for more flexible everyday lighting.':'Se actualizaron dos luminarias de baño en un proyecto residencial y se añadieron reguladores para un uso más flexible.','Project Details':'Detalles del proyecto','Service':'Servicio','Lighting installation':'Instalación de iluminación','Scope':'Alcance','Two vanity fixtures and two dimmers':'Dos luminarias y dos reguladores','Property':'Propiedad','Residential':'Residencial','Area':'Zona','Vancouver &amp; Lower Mainland':'Vancouver y Lower Mainland',
+  'The Project':'El proyecto','Updated lighting with practical control.':'Iluminación renovada con control práctico.','The existing bathroom lighting was replaced with updated vanity fixtures selected by the homeowner. Each lighting location was completed as part of the same project, and compatible slide dimmers were installed to provide adjustable light levels.':'Se reemplazó la iluminación existente por luminarias elegidas por el propietario. Los dos puntos se completaron en el mismo proyecto y se instalaron reguladores compatibles.','The result is brighter, cleaner-looking vanity lighting with the flexibility to reduce brightness when full output is not needed.':'El resultado es una iluminación más clara y limpia, con la posibilidad de reducir la intensidad cuando no se necesita toda la potencia.',
+  'Lighting Upgrade':'Mejora de iluminación','Existing fixture and completed installation.':'Luminaria existente e instalación terminada.','These photos show two lighting locations completed during the same residential project.':'Las fotos muestran dos puntos de iluminación realizados en el mismo proyecto residencial.','Existing Fixture':'Luminaria existente','Older bathroom vanity lighting before the project.':'Iluminación anterior al proyecto.','Completed Installation':'Instalación terminada','Updated vanity lighting installed and operating.':'Iluminación renovada, instalada y en funcionamiento.',
+  'Lighting Control':'Control de iluminación','From standard switching to adjustable light.':'De interruptores estándar a luz regulable.','A slide dimmer gives the homeowner practical control over bathroom brightness while retaining a familiar wall-switch layout.':'Un regulador deslizante permite controlar el brillo manteniendo un formato de interruptor familiar.','Before':'Antes','Standard on/off switching.':'Control estándar de encendido y apagado.','After':'Después','New slide dimmer for adjustable lighting.':'Nuevo regulador deslizante para ajustar la luz.','Planning a Lighting Upgrade?':'¿Planea mejorar la iluminación?','Tell us what you would like to change.':'Cuéntenos qué desea cambiar.','Share a few details about your existing fixture, preferred replacement, and project location.':'Comparta información sobre la luminaria existente, el reemplazo deseado y la ubicación.','Request a Similar Project Quote':'Solicitar presupuesto para un proyecto similar'
+});
+
+const projectMeta = {
+  zh: {
+    title: '浴室镜前灯与调光开关升级 | Pacific Spirit Electrical',
+    description: '近期浴室照明案例：升级两套镜前灯并安装两个调光开关，让日常照明更舒适、更灵活。',
+  },
+  es: {
+    title: 'Iluminación de baño y reguladores | Pacific Spirit Electrical',
+    description: 'Proyecto reciente: dos luminarias de baño renovadas y dos reguladores instalados para una iluminación más cómoda y flexible.',
+  },
+};
+
 function translateTextNodes(html, dictionary) {
   return html.replace(/>([^<>]+)</g, (whole, text) => {
     const trimmed = text.trim();
@@ -44,7 +86,13 @@ function localize(html, lang, page) {
   html = html.replace(/<link rel="canonical" href="[^"]+">/, `<link rel="canonical" href="${localizedUrl}">`);
   html = html.replace(/<meta property="og:url" content="[^"]+">/, `<meta property="og:url" content="${localizedUrl}">`);
   html = html.replace(/<meta property="og:locale" content="[^"]+">/, `<meta property="og:locale" content="${lang === 'zh' ? 'zh_CN' : 'es_ES'}">`);
-  html = html.replace(/href="\/(?!zh\/|es\/|images\/|favicon|#|contact\/\?)(services|about|service-areas|contact|privacy)\//g, `href="/${lang}/$1/`);
+  if (page === 'projects/bathroom-vanity-lighting-upgrade') {
+    const meta = projectMeta[lang];
+    html = html.replace(/<meta name="description" content="[^"]+">/, `<meta name="description" content="${meta.description}">`);
+    html = html.replace(/<meta property="og:title" content="[^"]+">/, `<meta property="og:title" content="${meta.title}">`);
+    html = html.replace(/<meta property="og:description" content="[^"]+">/, `<meta property="og:description" content="${meta.description}">`);
+  }
+  html = html.replace(/href="\/(?!zh\/|es\/|images\/|favicon|#|contact\/\?)(services|about|service-areas|contact|privacy|projects)\//g, `href="/${lang}/$1/`);
   html = html.replace(/href="\/"/g, `href="/${lang}/"`);
   html = html.replace(/href="\/contact\/\?/g, `href="/${lang}/contact/?`);
   const englishPath = `/${pagePath}`;

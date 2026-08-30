@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+
+const title = 'Bathroom Vanity Lighting & Dimmer Upgrade | Pacific Spirit Electrical';
+const description = 'A recent bathroom lighting project featuring upgraded vanity fixtures and new dimmer controls for more comfortable, flexible lighting.';
+---
+
+<BaseLayout {title} {description} path="/projects/bathroom-vanity-lighting-upgrade/">
+  <section class="page-hero project-hero">
+    <div class="shell project-hero__grid">
+      <div>
+        <p class="eyebrow">Recent Electrical Work</p>
+        <h1>Bathroom vanity lighting &amp; dimmer upgrade.</h1>
+        <p>Two bathroom vanity fixtures were updated as part of one residential project, with new dimmer controls added for more flexible everyday lighting.</p>
+      </div>
+      <aside class="project-summary" aria-label="Project summary">
+        <p class="eyebrow">Project Details</p>
+        <dl>
+          <div><dt>Service</dt><dd>Lighting installation</dd></div>
+          <div><dt>Scope</dt><dd>Two vanity fixtures and two dimmers</dd></div>
+          <div><dt>Property</dt><dd>Residential</dd></div>
+          <div><dt>Area</dt><dd>Vancouver &amp; Lower Mainland</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell project-copy">
+      <div>
+        <p class="eyebrow">The Project</p>
+        <h2>Updated lighting with practical control.</h2>
+      </div>
+      <div class="copy">
+        <p>The existing bathroom lighting was replaced with updated vanity fixtures selected by the homeowner. Each lighting location was completed as part of the same project, and compatible slide dimmers were installed to provide adjustable light levels.</p>
+        <p>The result is brighter, cleaner-looking vanity lighting with the flexibility to reduce brightness when full output is not needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section project-gallery-section">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Lighting Upgrade</p><h2>Existing fixture and completed installation.</h2></div><p>These photos show two lighting locations completed during the same residential project.</p></div>
+      <div class="project-photo-grid">
+        <figure><img src="/images/projects/vanity-existing.webp" width="1120" height="1400" alt="Existing three-shade bathroom vanity light before replacement" loading="eager" decoding="async" /><figcaption><strong>Existing Fixture</strong><span>Older bathroom vanity lighting before the project.</span></figcaption></figure>
+        <figure><img src="/images/projects/vanity-completed.webp" width="1120" height="1400" alt="Completed five-globe soft-gold bathroom vanity light installation" loading="eager" decoding="async" /><figcaption><strong>Completed Installation</strong><span>Updated vanity lighting installed and operating.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Lighting Control</p><h2>From standard switching to adjustable light.</h2></div><p>A slide dimmer gives the homeowner practical control over bathroom brightness while retaining a familiar wall-switch layout.</p></div>
+      <div class="project-photo-grid project-photo-grid--detail">
+        <figure><img src="/images/projects/switch-existing.webp" width="1120" height="1400" alt="Two standard Decora wall switches before dimmer installation" loading="lazy" decoding="async" /><figcaption><strong>Before</strong><span>Standard on/off switching.</span></figcaption></figure>
+        <figure><img src="/images/projects/dimmer-completed.webp" width="1120" height="1400" alt="New white slide dimmer installed beside a Decora wall switch" loading="lazy" decoding="async" /><figcaption><strong>After</strong><span>New slide dimmer for adjustable lighting.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta project-cta"><div class="shell cta__inner"><div><p class="eyebrow">Planning a Lighting Upgrade?</p><h2>Tell us what you would like to change.</h2><p>Share a few details about your existing fixture, preferred replacement, and project location.</p></div><div class="cta__actions"><a class="button cta__primary" href="/contact/?service=Lighting%20Installation#quote-form">Request a Similar Project Quote</a><a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a></div></div></section>
+</BaseLayout>
