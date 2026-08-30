@@ -1,14 +1,36 @@
+<button class="crisp-chat-label" type="button" data-crisp-open aria-label="Chat with us">
+  <span aria-hidden="true">💬</span>
+  <strong data-crisp-label>Chat with us</strong>
+</button>
+
 <script is:inline>
   window.$crisp = [];
   window.CRISP_WEBSITE_ID = 'd068e0ce-c6ce-490a-82e7-b7a06c3d5331';
 
   const path = window.location.pathname;
   const locale = path.startsWith('/zh/') ? 'zh' : path.startsWith('/es/') ? 'es' : 'en';
+  const chatLabels = {
+    en: 'Chat with us',
+    zh: '在线咨询',
+    es: 'Chatea con nosotros'
+  };
 
   window.CRISP_RUNTIME_CONFIG = { locale };
   window.$crisp.push(['safe', true]);
   window.$crisp.push(['config', 'color:theme', ['blue']]);
-  window.$crisp.push(['config', 'availability:tooltip', [true]]);
+  window.$crisp.push(['config', 'availability:tooltip', [false]]);
+
+  const customChatButton = document.querySelector('[data-crisp-open]');
+  const customChatLabel = document.querySelector('[data-crisp-label]');
+  const localizedChatLabel = chatLabels[locale];
+
+  if (customChatButton && customChatLabel) {
+    customChatLabel.textContent = localizedChatLabel;
+    customChatButton.setAttribute('aria-label', localizedChatLabel);
+    customChatButton.addEventListener('click', () => {
+      window.$crisp.push(['do', 'chat:open']);
+    });
+  }
 
   const crispScript = document.createElement('script');
   crispScript.src = 'https://client.crisp.chat/l.js';
