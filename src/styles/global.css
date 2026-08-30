@@ -277,6 +277,7 @@ h3 { margin-bottom: .65rem; font-size: 1.22rem; }
 .contact-hero__links strong { font-size: .93rem; }
 .contact-hero__links small { margin-top: .12rem; color: rgba(225, 234, 227, .72); font-size: .74rem; line-height: 1.4; }
 .contact-grid { display: grid; grid-template-columns: .82fr 1.18fr; align-items: start; gap: clamp(2.5rem, 7vw, 6rem); }
+.contact-quote { scroll-margin-top: 7rem; }
 .contact-quote__intro h3 { margin-top: 2rem; font-size: 1rem; }
 .contact-checklist { display: grid; gap: .7rem; margin: 1rem 0 1.5rem; padding: 0; list-style: none; }
 .contact-checklist li { display: flex; align-items: flex-start; gap: .65rem; color: var(--ink); font-weight: 650; }
