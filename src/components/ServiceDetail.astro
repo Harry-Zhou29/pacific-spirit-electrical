@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import type { Lang } from '../data/i18n';
+import type { ServiceDetail as ServiceDetailData } from '../data/service-details';
+interface Props { service: ServiceDetailData; lang: Lang }
+const { service, lang } = Astro.props;
+const copy = service.copy[lang];
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const path = `${prefix}/services/${service.slug}/`;
+const labels = {
+  en: { details:'Service Details', property:'Property types', propertyValue:'Residential & light commercial', area:'Service area', areaValue:'Vancouver & Lower Mainland', quote:'Request a Quote', discuss:'Discuss This Service', ctaTitle:'Tell us what you need help with.', ctaText:'Share the property location, current issue or planned upgrade, and any helpful photos.' },
+  zh: { details:'服务详情', property:'物业类型', propertyValue:'住宅及轻型商业', area:'服务区域', areaValue:'温哥华及大温地区', quote:'申请报价', discuss:'咨询此项服务', ctaTitle:'告诉我们您需要哪些帮助。', ctaText:'请提供物业位置、当前问题或计划升级内容，并附上有帮助的照片。' },
+  es: { details:'Detalles', property:'Tipo de propiedad', propertyValue:'Residencial y comercial ligero', area:'Zona', areaValue:'Vancouver y Lower Mainland', quote:'Solicitar presupuesto', discuss:'Consultar este servicio', ctaTitle:'Cuéntenos cómo podemos ayudar.', ctaText:'Comparta la ubicación, el problema o mejora prevista y fotos útiles.' }
+}[lang];
+---
+<BaseLayout title={copy.metaTitle} description={copy.description} {path}>
+  <section class="page-hero service-detail-hero"><div class="shell service-detail-hero__grid"><div><p class="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p>{copy.intro}</p><div class="service-detail-hero__actions"><a class="button service-detail-hero__primary" href={`${prefix}/contact/?service=${encodeURIComponent(service.contactValue)}#quote-form`}>{labels.quote}</a><a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> {site.phone}</a></div></div><aside class="service-detail-summary"><Icon name={service.icon} /><p class="eyebrow">{labels.details}</p><dl><div><dt>{labels.property}</dt><dd>{labels.propertyValue}</dd></div><div><dt>{labels.area}</dt><dd>{labels.areaValue}</dd></div></dl></aside></div></section>
+  <section class="section section--white"><div class="shell service-detail-content"><div><p class="eyebrow">{copy.includedTitle}</p><h2>{copy.title}</h2></div><ul>{copy.included.map((item) => <li><Icon name="clipboard-check" /><span>{item}</span></li>)}</ul></div></section>
+  <section class="section"><div class="shell service-detail-approach"><div><p class="eyebrow">{copy.approachTitle}</p><h2>{copy.approachTitle}</h2></div><p>{copy.approach}</p></div></section>
+  <section class="cta service-detail-cta"><div class="shell cta__inner"><div><p class="eyebrow">{labels.discuss}</p><h2>{labels.ctaTitle}</h2><p>{labels.ctaText}</p></div><div class="cta__actions"><a class="button" href={`${prefix}/contact/?service=${encodeURIComponent(service.contactValue)}#quote-form`}>{labels.quote}</a><a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> {site.phone}</a></div></div></section>
+</BaseLayout>

@@ -119,7 +119,47 @@ Object.assign(pageText.es, {
   'Cable Routing':'Canalización','Protected pathways across the rooftop.':'Rutas protegidas a través de la azotea.','Exterior cable routes were organized around the building conditions and the selected camera positions.':'Las rutas exteriores se organizaron según el edificio y las posiciones seleccionadas.','Rooftop Route':'Ruta en azotea','Surface routing and enclosure work supporting the exterior camera installation.':'Canalización superficial y envolvente para la instalación exterior.','Planning CCTV for a Commercial Property?':'¿Planea CCTV para una propiedad comercial?','Share the property type, preferred camera locations, available power, and any exterior routing considerations.':'Indique el tipo de propiedad, ubicaciones preferidas, alimentación disponible y consideraciones de canalización exterior.'
 });
 
+Object.assign(pageText.zh, {
+  'View service details':'查看服务详情',
+  'Light Commercial':'轻型商业电气',
+  'Commercial Electrical Maintenance':'商业电气维护',
+  'Practical troubleshooting, lighting maintenance, targeted repairs, and small upgrades for occupied commercial properties.':'为在用商业物业提供实用故障排查、照明维护、针对性维修和小型升级。',
+  'View commercial maintenance':'查看商业维护服务'
+});
+
+Object.assign(pageText.es, {
+  'View service details':'Ver detalles del servicio',
+  'Light Commercial':'Comercial ligero',
+  'Commercial Electrical Maintenance':'Mantenimiento eléctrico comercial',
+  'Practical troubleshooting, lighting maintenance, targeted repairs, and small upgrades for occupied commercial properties.':'Diagnóstico, mantenimiento de iluminación, reparaciones específicas y pequeñas mejoras para propiedades comerciales ocupadas.',
+  'View commercial maintenance':'Ver mantenimiento comercial'
+});
+
 const projectMeta = {
+  index: {
+    zh: { title: '温哥华红印认证电工 | Pacific Spirit Electrical', description: '为温哥华及大温地区提供住宅与轻型商业电气服务，包括维修、配电箱升级、EV 充电桩、照明和装修电气。' },
+    es: { title: 'Electricista Red Seal en Vancouver | Pacific Spirit Electrical', description: 'Servicios eléctricos residenciales y comerciales ligeros en Vancouver y Lower Mainland: reparaciones, paneles, cargadores EV, iluminación y renovaciones.' },
+  },
+  services: {
+    zh: { title: '温哥华电气服务 | Pacific Spirit Electrical', description: '温哥华及大温地区住宅与轻型商业电气服务，包括故障维修、配电箱、EV 充电桩、照明和装修布线。' },
+    es: { title: 'Servicios eléctricos en Vancouver | Pacific Spirit Electrical', description: 'Servicios eléctricos residenciales y comerciales ligeros en Vancouver: reparaciones, paneles, cargadores EV, iluminación y renovaciones.' },
+  },
+  about: {
+    zh: { title: '关于 Pacific Spirit Electrical | 温哥华电工', description: '了解 Pacific Spirit Electrical 的红印认证电工资质、服务理念及温哥华本地住宅和轻型商业电气服务。' },
+    es: { title: 'Acerca de Pacific Spirit Electrical | Electricista en Vancouver', description: 'Conozca nuestro servicio eléctrico Red Seal para viviendas y propiedades comerciales ligeras en Vancouver y Lower Mainland.' },
+  },
+  'service-areas': {
+    zh: { title: '温哥华及大温电工服务区域 | Pacific Spirit Electrical', description: '服务 Vancouver、Burnaby、Richmond、North Shore、New Westminster 及大温周边地区。' },
+    es: { title: 'Zonas de servicio eléctrico en Vancouver | Pacific Spirit Electrical', description: 'Servicio en Vancouver, Burnaby, Richmond, North Shore, New Westminster y comunidades cercanas de Lower Mainland.' },
+  },
+  contact: {
+    zh: { title: '联系温哥华电工 | Pacific Spirit Electrical', description: '联系 Pacific Spirit Electrical，咨询温哥华及大温地区住宅与轻型商业电气工程并申请免费估价。' },
+    es: { title: 'Contactar electricista en Vancouver | Pacific Spirit Electrical', description: 'Contacte con Pacific Spirit Electrical para consultar su proyecto y solicitar presupuesto en Vancouver y Lower Mainland.' },
+  },
+  privacy: {
+    zh: { title: '隐私政策 | Pacific Spirit Electrical', description: 'Pacific Spirit Electrical 网站隐私政策及咨询资料处理说明。' },
+    es: { title: 'Política de privacidad | Pacific Spirit Electrical', description: 'Política de privacidad y tratamiento de consultas de Pacific Spirit Electrical.' },
+  },
   'projects/bathroom-vanity-lighting-upgrade': {
     zh: {
       title: '浴室镜前灯与调光开关升级 | Pacific Spirit Electrical',
@@ -172,6 +212,7 @@ function localize(html, lang, page) {
   html = html.replace(/<meta property="og:locale" content="[^"]+">/, `<meta property="og:locale" content="${lang === 'zh' ? 'zh_CN' : 'es_ES'}">`);
   if (projectMeta[page]) {
     const meta = projectMeta[page][lang];
+    html = html.replace(/<title>[^<]+<\/title>/, `<title>${meta.title}</title>`);
     html = html.replace(/<meta name="description" content="[^"]+">/, `<meta name="description" content="${meta.description}">`);
     html = html.replace(/<meta property="og:title" content="[^"]+">/, `<meta property="og:title" content="${meta.title}">`);
     html = html.replace(/<meta property="og:description" content="[^"]+">/, `<meta property="og:description" content="${meta.description}">`);

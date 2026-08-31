@@ -1,0 +1,9 @@
+---
+import ServiceDetail from '../../../components/ServiceDetail.astro';
+import { serviceDetails, getServiceDetail } from '../../../data/service-details';
+export function getStaticPaths() { return ['zh','es'].flatMap((lang) => serviceDetails.map((service) => ({ params:{ lang, service:service.slug }, props:{ lang, service:service.slug } }))); }
+const { lang, service: slug } = Astro.props as { lang:'zh'|'es'; service:string };
+const service = getServiceDetail(slug);
+if (!service) return Astro.redirect('/404/');
+---
+<ServiceDetail {service} {lang} />

@@ -1,0 +1,8 @@
+---
+import ServiceDetail from '../../components/ServiceDetail.astro';
+import { serviceDetails, getServiceDetail } from '../../data/service-details';
+export function getStaticPaths() { return serviceDetails.map((service) => ({ params:{ service:service.slug } })); }
+const service = getServiceDetail(Astro.params.service!);
+if (!service) return Astro.redirect('/404/');
+---
+<ServiceDetail {service} lang="en" />
