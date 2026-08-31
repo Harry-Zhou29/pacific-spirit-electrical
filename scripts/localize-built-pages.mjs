@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy', 'projects/bathroom-vanity-lighting-upgrade', 'projects/warehouse-cctv-installation'];
+const pages = ['index', 'services', 'about', 'service-areas', 'contact', 'privacy', 'projects/bathroom-vanity-lighting-upgrade', 'projects/warehouse-cctv-installation', 'projects/commercial-centre-cctv-installation'];
 
 const common = {
   zh: {
@@ -78,6 +78,47 @@ Object.assign(pageText.es, {
   'Installation Planning':'Planificación de la instalación','Power locations planned before mounting.':'Ubicaciones de alimentación planificadas antes del montaje.','Camera and electrical locations were reviewed together so each device could be mounted where it provided useful coverage and practical access to power.':'Las ubicaciones de las cámaras y de la alimentación se revisaron conjuntamente para obtener buena cobertura y acceso práctico a la corriente.','Before Installation':'Antes de la instalación','Proposed mounting and power locations marked during site planning.':'Puntos propuestos de montaje y alimentación marcados durante la planificación.','Planning CCTV for Your Property?':'¿Planea instalar CCTV en su propiedad?','Tell us about the areas you need to monitor.':'Cuéntenos qué zonas necesita vigilar.','Share the property type, preferred camera locations, available power, and whether you need help with network and mobile app setup.':'Indique el tipo de propiedad, las ubicaciones preferidas, la alimentación disponible y si necesita ayuda con la red y la aplicación móvil.'
 });
 
+Object.assign(pageText.zh, {
+  'Project Showcase':'案例展示',
+  'A growing collection of completed work.':'持续累积的完工案例。',
+  'Explore recent residential and commercial installations. New projects will be added here while earlier case studies remain available.':'浏览近期住宅与商业安装项目。以后新增案例会继续加入，旧案例也会一直保留。',
+  'Commercial CCTV · Lower Mainland':'商业 CCTV · 大温地区',
+  'Commercial Centre CCTV Installation':'商业中心 CCTV 安装',
+  'Exterior CCTV cameras installed across high-level commercial areas with protected conduit routing and practical coverage planning.':'在商业中心多个高位区域安装室外 CCTV 摄像头，并完成保护管敷设与实用监控范围规划。',
+  'Commercial CCTV · Vancouver':'商业 CCTV · 温哥华',
+  'Warehouse CCTV Installation':'仓库 CCTV 安装',
+  'Two securely mounted Wi-Fi cameras with new nearby power points, mobile app setup, and final coverage and recording tests.':'稳固安装两台 Wi-Fi 摄像头，新增就近电源点，并完成手机 App、监控范围与录像测试。',
+  'Residential Lighting · Lower Mainland':'住宅照明 · 大温地区',
+  'Bathroom Vanity Lighting &amp; Dimmer Upgrade':'浴室镜前灯与调光开关升级',
+  'Two updated vanity fixtures with compatible slide dimmers for brighter, more flexible everyday lighting.':'升级两套镜前灯并安装兼容的滑动调光开关，让日常照明更明亮、更灵活。',
+  'Commercial Centre CCTV Installation | Pacific Spirit Electrical':'商业中心 CCTV 安装 | Pacific Spirit Electrical',
+  'Commercial centre CCTV installation.':'商业中心 CCTV 安装。',
+  'Exterior CCTV cameras were installed at selected high-level locations around the commercial centre, with protected conduit routing and careful sight-line planning.':'在商业中心周围选定的高位点安装室外 CCTV 摄像头，并完成保护管敷设和细致的监控视角规划。',
+  'Commercial CCTV installation':'商业 CCTV 安装','Exterior cameras and conduit routing':'室外摄像头与保护管敷设','Commercial centre':'商业中心','Location':'地点',
+  'High-level camera coverage for a busy commercial property.':'为繁忙商业物业提供高位监控覆盖。',
+  'The installation involved working across rooftop, canopy, and exterior wall locations to establish useful views of public and service areas around the property.':'项目涉及屋顶、雨棚和外墙多个位置，为物业周边公共区域及服务区域建立实用的监控视角。',
+  'Camera mounting positions and cable routes were considered together. Weather-protected fittings, flexible conduit, and surface-mounted raceways were used where appropriate for an orderly exterior installation.':'摄像头安装点位与线路路径统一规划，并根据现场情况采用防风雨配件、柔性保护管和明装线槽，使室外安装整齐有序。',
+  'Exterior cameras positioned for practical coverage.':'室外摄像头按实用监控范围布置。',
+  'High-level mounting provides broad viewing angles while keeping the equipment securely positioned on the building exterior.':'高位安装既提供宽广视角，也让设备牢固地固定在建筑外部。',
+  'Exterior Camera':'室外摄像头','High-level camera with protected conduit connection.':'高位摄像头采用保护管连接。','Canopy Coverage':'雨棚区域监控','Camera positioned beneath the structure for a protected viewing location.':'摄像头安装在结构下方，兼顾保护与监控视角。','Parking Area View':'停车区域视角','Exterior camera aimed from a high mounting point toward the surrounding area.':'室外摄像头从高位朝向周边区域。','Rooftop Installation':'屋顶安装','Access and routing work completed at the upper building level.':'在建筑上层完成施工通道与线路敷设。',
+  'Cable Routing':'线路敷设','Protected pathways across the rooftop.':'屋顶上的保护线路路径。','Exterior cable routes were organized around the building conditions and the selected camera positions.':'根据建筑现场条件和选定摄像头位置规划室外线路。','Rooftop Route':'屋顶线路','Surface routing and enclosure work supporting the exterior camera installation.':'明装线路及箱体为室外摄像头安装提供支持。',
+  'Planning CCTV for a Commercial Property?':'计划为商业物业安装 CCTV？','Share the property type, preferred camera locations, available power, and any exterior routing considerations.':'请提供物业类型、希望安装摄像头的位置、现有电源以及室外线路敷设方面的情况。'
+});
+
+Object.assign(pageText.es, {
+  'Project Showcase':'Proyectos realizados',
+  'A growing collection of completed work.':'Una colección creciente de trabajos terminados.',
+  'Explore recent residential and commercial installations. New projects will be added here while earlier case studies remain available.':'Explore instalaciones residenciales y comerciales recientes. Los nuevos proyectos se añadirán sin reemplazar los casos anteriores.',
+  'Commercial CCTV · Lower Mainland':'CCTV comercial · Lower Mainland','Commercial Centre CCTV Installation':'Instalación de CCTV en centro comercial','Exterior CCTV cameras installed across high-level commercial areas with protected conduit routing and practical coverage planning.':'Cámaras CCTV exteriores instaladas en puntos elevados, con canalización protegida y planificación práctica de cobertura.',
+  'Commercial CCTV · Vancouver':'CCTV comercial · Vancouver','Warehouse CCTV Installation':'Instalación de CCTV en almacén','Two securely mounted Wi-Fi cameras with new nearby power points, mobile app setup, and final coverage and recording tests.':'Dos cámaras Wi-Fi instaladas de forma segura, con nuevos puntos de alimentación, configuración móvil y pruebas de cobertura y grabación.',
+  'Residential Lighting · Lower Mainland':'Iluminación residencial · Lower Mainland','Bathroom Vanity Lighting &amp; Dimmer Upgrade':'Iluminación de baño y reguladores','Two updated vanity fixtures with compatible slide dimmers for brighter, more flexible everyday lighting.':'Dos luminarias renovadas con reguladores compatibles para una iluminación diaria más clara y flexible.',
+  'Commercial Centre CCTV Installation | Pacific Spirit Electrical':'Instalación de CCTV en centro comercial | Pacific Spirit Electrical','Commercial centre CCTV installation.':'Instalación de CCTV en centro comercial.','Exterior CCTV cameras were installed at selected high-level locations around the commercial centre, with protected conduit routing and careful sight-line planning.':'Se instalaron cámaras CCTV exteriores en puntos elevados seleccionados, con canalización protegida y planificación cuidadosa de los ángulos de visión.',
+  'Commercial CCTV installation':'Instalación de CCTV comercial','Exterior cameras and conduit routing':'Cámaras exteriores y canalización','Commercial centre':'Centro comercial','Location':'Ubicación',
+  'High-level camera coverage for a busy commercial property.':'Cobertura elevada para una propiedad comercial concurrida.','The installation involved working across rooftop, canopy, and exterior wall locations to establish useful views of public and service areas around the property.':'La instalación abarcó azotea, marquesinas y paredes exteriores para obtener vistas útiles de zonas públicas y de servicio.','Camera mounting positions and cable routes were considered together. Weather-protected fittings, flexible conduit, and surface-mounted raceways were used where appropriate for an orderly exterior installation.':'Las posiciones y rutas de cable se planificaron conjuntamente, utilizando accesorios protegidos, conducto flexible y canaletas de superficie según las condiciones.',
+  'Exterior cameras positioned for practical coverage.':'Cámaras exteriores colocadas para una cobertura práctica.','High-level mounting provides broad viewing angles while keeping the equipment securely positioned on the building exterior.':'El montaje elevado proporciona amplios ángulos y mantiene el equipo bien fijado al exterior.','Exterior Camera':'Cámara exterior','High-level camera with protected conduit connection.':'Cámara elevada con conexión de conducto protegida.','Canopy Coverage':'Cobertura de marquesina','Camera positioned beneath the structure for a protected viewing location.':'Cámara colocada bajo la estructura en un punto protegido.','Parking Area View':'Vista del estacionamiento','Exterior camera aimed from a high mounting point toward the surrounding area.':'Cámara exterior orientada desde un punto elevado hacia el área circundante.','Rooftop Installation':'Instalación en azotea','Access and routing work completed at the upper building level.':'Acceso y canalización realizados en el nivel superior.',
+  'Cable Routing':'Canalización','Protected pathways across the rooftop.':'Rutas protegidas a través de la azotea.','Exterior cable routes were organized around the building conditions and the selected camera positions.':'Las rutas exteriores se organizaron según el edificio y las posiciones seleccionadas.','Rooftop Route':'Ruta en azotea','Surface routing and enclosure work supporting the exterior camera installation.':'Canalización superficial y envolvente para la instalación exterior.','Planning CCTV for a Commercial Property?':'¿Planea CCTV para una propiedad comercial?','Share the property type, preferred camera locations, available power, and any exterior routing considerations.':'Indique el tipo de propiedad, ubicaciones preferidas, alimentación disponible y consideraciones de canalización exterior.'
+});
+
 const projectMeta = {
   'projects/bathroom-vanity-lighting-upgrade': {
     zh: {
@@ -97,6 +138,16 @@ const projectMeta = {
     es: {
       title: 'Instalación de CCTV en almacén | Pacific Spirit Electrical',
       description: 'Proyecto de CCTV en un almacén de Vancouver con dos cámaras Wi-Fi, nuevos puntos de alimentación, configuración móvil y pruebas finales.',
+    },
+  },
+  'projects/commercial-centre-cctv-installation': {
+    zh: {
+      title: '商业中心 CCTV 安装 | Pacific Spirit Electrical',
+      description: '大温地区商业中心 CCTV 案例：外墙与屋顶摄像头安装、保护管敷设及监控范围规划。',
+    },
+    es: {
+      title: 'Instalación de CCTV en centro comercial | Pacific Spirit Electrical',
+      description: 'Instalación de CCTV en un centro comercial con cámaras exteriores, canalización protegida y planificación de cobertura.',
     },
   },
 };

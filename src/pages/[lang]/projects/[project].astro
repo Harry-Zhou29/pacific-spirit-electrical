@@ -5,6 +5,7 @@ export function getStaticPaths() {
   return ['zh', 'es'].flatMap((lang) => [
     'bathroom-vanity-lighting-upgrade',
     'warehouse-cctv-installation',
+    'commercial-centre-cctv-installation',
   ].map((project) => ({
     params: { lang, project },
     props: { lang, project },
@@ -14,10 +15,15 @@ export function getStaticPaths() {
 const { lang, project } = Astro.props as { lang: 'zh' | 'es'; project: string };
 const isChinese = lang === 'zh';
 const isCctv = project === 'warehouse-cctv-installation';
-const title = isCctv
+const isCommercialCentreCctv = project === 'commercial-centre-cctv-installation';
+const title = isCommercialCentreCctv
+  ? (isChinese ? '商业中心 CCTV 安装 | Pacific Spirit Electrical' : 'Instalación de CCTV en centro comercial | Pacific Spirit Electrical')
+  : isCctv
   ? (isChinese ? '温哥华仓库 CCTV 监控安装 | Pacific Spirit Electrical' : 'Instalación de CCTV en almacén | Pacific Spirit Electrical')
   : (isChinese ? '浴室镜前灯与调光开关升级 | Pacific Spirit Electrical' : 'Iluminación de baño y reguladores | Pacific Spirit Electrical');
-const description = isCctv
+const description = isCommercialCentreCctv
+  ? (isChinese ? '大温地区商业中心 CCTV 案例：外墙与屋顶摄像头安装、保护管敷设及监控范围规划。' : 'Instalación de CCTV en un centro comercial de Lower Mainland con cámaras exteriores, canalización protegida y planificación de cobertura.')
+  : isCctv
   ? (isChinese ? '温哥华仓库 CCTV 案例：安装两台 Wi-Fi 摄像头、新增电源点，并完成手机 App、角度与录像测试。' : 'Proyecto de CCTV en un almacén de Vancouver con dos cámaras Wi-Fi, nuevos puntos de alimentación, configuración móvil y pruebas finales.')
   : (isChinese ? '近期浴室照明案例：升级镜前灯并安装调光开关，让日常照明更舒适、更灵活。' : 'Proyecto reciente de iluminación de baño con nuevos apliques de tocador y reguladores para un uso más cómodo y flexible.');
 const path = `/${lang}/projects/${project}/`;
@@ -27,7 +33,7 @@ const path = `/${lang}/projects/${project}/`;
 <BaseLayout {title} {description} {path}>
   <section class="page-hero">
     <div class="shell">
-      <h1>{isCctv ? (isChinese ? '仓库 CCTV 监控安装' : 'Instalación de CCTV en almacén') : (isChinese ? '浴室镜前灯与调光开关升级' : 'Iluminación de baño y reguladores')}</h1>
+      <h1>{isCommercialCentreCctv ? (isChinese ? '商业中心 CCTV 安装' : 'Instalación de CCTV en centro comercial') : isCctv ? (isChinese ? '仓库 CCTV 监控安装' : 'Instalación de CCTV en almacén') : (isChinese ? '浴室镜前灯与调光开关升级' : 'Iluminación de baño y reguladores')}</h1>
     </div>
   </section>
 </BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+
+const title = 'Commercial Centre CCTV Installation | Pacific Spirit Electrical';
+const description = 'A Lower Mainland commercial centre CCTV installation featuring exterior camera mounting, protected conduit routing, rooftop work, and coverage planning.';
+---
+
+<BaseLayout {title} {description} path="/projects/commercial-centre-cctv-installation/">
+  <section class="page-hero project-hero">
+    <div class="shell project-hero__grid">
+      <div>
+        <p class="eyebrow">Recent Commercial Work</p>
+        <h1>Commercial centre CCTV installation.</h1>
+        <p>Exterior CCTV cameras were installed at selected high-level locations around the commercial centre, with protected conduit routing and careful sight-line planning.</p>
+      </div>
+      <aside class="project-summary" aria-label="Project summary">
+        <p class="eyebrow">Project Details</p>
+        <dl>
+          <div><dt>Service</dt><dd>Commercial CCTV installation</dd></div>
+          <div><dt>Scope</dt><dd>Exterior cameras and conduit routing</dd></div>
+          <div><dt>Property</dt><dd>Commercial centre</dd></div>
+          <div><dt>Area</dt><dd>Lower Mainland</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell project-copy">
+      <div><p class="eyebrow">The Project</p><h2>High-level camera coverage for a busy commercial property.</h2></div>
+      <div class="copy">
+        <p>The installation involved working across rooftop, canopy, and exterior wall locations to establish useful views of public and service areas around the property.</p>
+        <p>Camera mounting positions and cable routes were considered together. Weather-protected fittings, flexible conduit, and surface-mounted raceways were used where appropriate for an orderly exterior installation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section project-gallery-section">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Completed Installation</p><h2>Exterior cameras positioned for practical coverage.</h2></div><p>High-level mounting provides broad viewing angles while keeping the equipment securely positioned on the building exterior.</p></div>
+      <div class="project-photo-grid">
+        <figure><img src="/images/projects/commercial-centre-cctv/cctv-camera-01.jpg" width="1200" height="900" alt="Weather-protected exterior CCTV camera at a commercial centre" loading="eager" decoding="async" /><figcaption><strong>Exterior Camera</strong><span>High-level camera with protected conduit connection.</span></figcaption></figure>
+        <figure><img src="/images/projects/commercial-centre-cctv/cctv-camera-02.jpg" width="900" height="1200" alt="CCTV camera mounted beneath a commercial centre canopy" loading="eager" decoding="async" /><figcaption><strong>Canopy Coverage</strong><span>Camera positioned beneath the structure for a protected viewing location.</span></figcaption></figure>
+        <figure><img src="/images/projects/commercial-centre-cctv/cctv-camera-03.jpg" width="900" height="1200" alt="High-level CCTV camera overlooking a commercial parking area" loading="lazy" decoding="async" /><figcaption><strong>Parking Area View</strong><span>Exterior camera aimed from a high mounting point toward the surrounding area.</span></figcaption></figure>
+        <figure><img src="/images/projects/commercial-centre-cctv/commercial-rooftop.jpg" width="900" height="1200" alt="Commercial rooftop access area during CCTV installation" loading="lazy" decoding="async" /><figcaption><strong>Rooftop Installation</strong><span>Access and routing work completed at the upper building level.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="shell">
+      <div class="section__head"><div><p class="eyebrow">Cable Routing</p><h2>Protected pathways across the rooftop.</h2></div><p>Exterior cable routes were organized around the building conditions and the selected camera positions.</p></div>
+      <div class="project-photo-grid project-photo-grid--single">
+        <figure><img src="/images/projects/commercial-centre-cctv/rooftop-installation.jpg" width="900" height="1200" alt="Rooftop CCTV cabling and enclosure installation at a commercial centre" loading="lazy" decoding="async" /><figcaption><strong>Rooftop Route</strong><span>Surface routing and enclosure work supporting the exterior camera installation.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta project-cta"><div class="shell cta__inner"><div><p class="eyebrow">Planning CCTV for a Commercial Property?</p><h2>Tell us about the areas you need to monitor.</h2><p>Share the property type, preferred camera locations, available power, and any exterior routing considerations.</p></div><div class="cta__actions"><a class="button cta__primary" href="/contact/?service=Other%20electrical%20work#quote-form">Request a Similar Project Quote</a><a class="button button--outline" href={`tel:${site.telephone}`}><Icon name="phone" /> Call {site.phone}</a></div></div></section>
+</BaseLayout>
