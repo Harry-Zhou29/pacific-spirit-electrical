@@ -19,7 +19,10 @@
   window.$crisp.push(['safe', true]);
   window.$crisp.push(['config', 'color:theme', ['blue']]);
   window.$crisp.push(['config', 'availability:tooltip', [false]]);
-  window.$crisp.push(['config', 'hide:on:mobile', [true]]);
+  window.$crisp.push(['do', 'chat:hide']);
+  window.$crisp.push(['on', 'chat:closed', () => {
+    window.$crisp.push(['do', 'chat:hide']);
+  }]);
 
   const customChatButton = document.querySelector('[data-crisp-open]');
   const customChatLabel = document.querySelector('[data-crisp-label]');
@@ -39,6 +42,7 @@
     customChatButton.setAttribute('aria-label', localizedChatLabel);
     customChatButton.addEventListener('click', () => {
       loadCrisp();
+      window.$crisp.push(['do', 'chat:show']);
       window.$crisp.push(['do', 'chat:open']);
     });
   }
