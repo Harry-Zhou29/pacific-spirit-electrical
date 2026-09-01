@@ -47,10 +47,10 @@ The form UI and browser submit handler live in `src/pages/contact.astro`. The br
 
 Set these server-side environment variables in the Cloudflare Worker before deploying:
 
-- `QUOTE_WEBHOOK_URL`: the Webhook URL from Grok Bot Quote form intake
-- `QUOTE_WEBHOOK_AUTH`: the complete Authorization header value from Grok Bot Quote form intake
+- `QUOTE_WEBHOOK_URL` (required): the active quote intake webhook URL
+- `QUOTE_WEBHOOK_AUTH` (optional): the complete Authorization header value when the webhook provider requires one, such as Grok Bot; omit it for an unauthenticated n8n webhook
 
-These values are server-only secrets. Do not prefix them with `PUBLIC_`, include them in client-side code, or commit them to Git. Redeploy the Pages project after adding or changing either variable.
+These values are server-only configuration. Do not prefix them with `PUBLIC_`, include them in client-side code, or commit them to Git. Redeploy the Worker after adding or changing either variable.
 
 ## Deploying to cPanel/static hosting
 

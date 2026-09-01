@@ -6,17 +6,17 @@ async function handleQuote(request, env) {
     });
   }
 
-  if (!env.QUOTE_WEBHOOK_URL || !env.QUOTE_WEBHOOK_AUTH) {
+  if (!env.QUOTE_WEBHOOK_URL) {
     return new Response('Quote service is not configured.', { status: 503 });
   }
 
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (env.QUOTE_WEBHOOK_AUTH) headers.Authorization = env.QUOTE_WEBHOOK_AUTH;
+
     const upstream = await fetch(env.QUOTE_WEBHOOK_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: env.QUOTE_WEBHOOK_AUTH
-      },
+      headers,
       body: request.body
     });
 
