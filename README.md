@@ -43,7 +43,14 @@ Once a phone number is confirmed, add it to `src/data/site.ts`. Then update `src
 
 ## Connecting the form
 
-The form UI lives in `src/pages/contact.astro`. It intentionally does not submit anywhere yet. When a backend or form service is chosen, replace `action="#"` and add that provider’s required form attributes or client/server handler. Keep the direct email link as a fallback.
+The form UI and browser submit handler live in `src/pages/contact.astro`. The browser posts to the same-origin `/api/quote` endpoint, which is implemented as a Cloudflare Pages Function in `functions/api/quote.js`.
+
+Set these server-side environment variables in the Cloudflare Pages project before deploying:
+
+- `QUOTE_WEBHOOK_URL`: the Webhook URL from Grok Bot Quote form intake
+- `QUOTE_WEBHOOK_AUTH`: the complete Authorization header value from Grok Bot Quote form intake
+
+These values are server-only secrets. Do not prefix them with `PUBLIC_`, include them in client-side code, or commit them to Git. Redeploy the Pages project after adding or changing either variable.
 
 ## Deploying to cPanel/static hosting
 
