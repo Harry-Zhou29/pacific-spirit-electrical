@@ -43,7 +43,7 @@ Once a phone number is confirmed, add it to `src/data/site.ts`. Then update `src
 
 ## Connecting the form
 
-The form UI and browser submit handler live in `src/pages/contact.astro`. The browser posts to the same-origin `/api/quote` endpoint, which is implemented as a Cloudflare Pages Function in `functions/api/quote.js`.
+The form UI and browser submit handler live in `src/pages/contact.astro`. The browser posts to the same-origin `/api/quote/` endpoint, which is implemented as a Cloudflare Pages Function in `functions/api/quote/index.js`.
 
 Set these server-side environment variables in the Cloudflare Pages project before deploying:
 

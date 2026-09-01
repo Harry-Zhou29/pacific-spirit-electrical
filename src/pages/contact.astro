@@ -265,7 +265,7 @@ const description = 'Request an electrical quote from Pacific Spirit Electrical 
     submitButton.textContent = 'Sending…';
 
     try {
-      const response = await fetch('/api/quote', {
+      const response = await fetch('/api/quote/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
