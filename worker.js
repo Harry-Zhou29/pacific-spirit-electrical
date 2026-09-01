@@ -1,6 +1,4 @@
-export async function onRequest(context) {
-  const { request, env } = context;
-
+async function handleQuote(request, env) {
   if (request.method !== 'POST') {
     return new Response('Method Not Allowed', {
       status: 405,
@@ -27,3 +25,14 @@ export async function onRequest(context) {
     return new Response('Quote service is temporarily unavailable.', { status: 502 });
   }
 }
+
+export default {
+  fetch(request, env) {
+    const { pathname } = new URL(request.url);
+    if (pathname === '/api/quote' || pathname === '/api/quote/') {
+      return handleQuote(request, env);
+    }
+
+    return env.ASSETS.fetch(request);
+  }
+};

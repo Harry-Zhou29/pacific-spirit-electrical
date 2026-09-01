@@ -43,9 +43,9 @@ Once a phone number is confirmed, add it to `src/data/site.ts`. Then update `src
 
 ## Connecting the form
 
-The form UI and browser submit handler live in `src/pages/contact.astro`. The browser posts to the same-origin `/api/quote/` endpoint, which is implemented as a Cloudflare Pages Function in `functions/api/quote/index.js`.
+The form UI and browser submit handler live in `src/pages/contact.astro`. The browser posts to the same-origin `/api/quote/` endpoint, which is handled by the Cloudflare Worker in `worker.js`. Static Astro files continue to be served through the `ASSETS` binding configured in `wrangler.jsonc`.
 
-Set these server-side environment variables in the Cloudflare Pages project before deploying:
+Set these server-side environment variables in the Cloudflare Worker before deploying:
 
 - `QUOTE_WEBHOOK_URL`: the Webhook URL from Grok Bot Quote form intake
 - `QUOTE_WEBHOOK_AUTH`: the complete Authorization header value from Grok Bot Quote form intake

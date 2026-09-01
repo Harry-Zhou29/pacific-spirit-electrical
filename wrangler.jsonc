@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "pacific-spirit-electrical",
+  "compatibility_date": "2026-08-31",
+  "main": "./worker.js",
+  "keep_vars": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    {
+      "pattern": "pacificspiritelectrical.ca",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.pacificspiritelectrical.ca",
+      "custom_domain": true
+    }
+  ]
+}
